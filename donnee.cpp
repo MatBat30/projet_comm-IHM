@@ -1,9 +1,11 @@
-//
-// Created by m.batailler on 29/03/2023.
-//
+
 #include <iostream>
+#include <sstream>
 #include "donnee.h"
 #include "cmake-build-debug/json.hpp"
+
+nlohmann::json j ;
+
 void donnee::getdata( )
 {
     std::cout << "get\n";
@@ -11,8 +13,6 @@ void donnee::getdata( )
 
 void donnee::setdata(int nbpixele, int posXimge, int posYimge, int dimHecre, int posXimg2, int dimLecre, int num_ecre,int numtotecra)
 {
-    //dimHmur dimmesion du mur hauteur en cm, dimLmur dimmesion du mur largeur en cm, nbpixel nombre de pixel de l'ecrant en px ,
-    //posXimg position de l'image sur l'axe X , posYimg position de l'image sur l'axe Y
 
     this->num_ecre = num_ecre;
     ParamVar.nbpixel = nbpixele;
@@ -33,7 +33,7 @@ void donnee::setdata(int nbpixele, int posXimge, int posYimge, int dimHecre, int
 
     temp_nom=nom.append(num);
 
-    std::cout << "set" << num_ecre << endl;
+
 
     vec.push_back(numtotecra);
     vec.push_back(ParamVar.nbpixel);
@@ -44,12 +44,19 @@ void donnee::setdata(int nbpixele, int posXimge, int posYimge, int dimHecre, int
     vec.push_back(ParamVar.posXimg2);
 
 
+    for (int i = 0; i < vec.size(); ++i) {
+        std::cout << vec.at(i)<<";";
+    }
+
+    std::cout << "set" << num_ecre << endl;
+
+
 }
 
 int donnee::writedata()
 {
 
-    nlohmann::json j ;
+
     std::ofstream file_id;
     std::string test;
 
@@ -71,6 +78,70 @@ int donnee::writedata()
     output_file.close();
     return 0;
 }
+
+void donnee::test (string path){
+
+    std::ifstream file(path, std::ios::binary);
+
+    if (!file.is_open()) {
+        std::cerr << "Erreur lors de l'ouverture du fichier de sortie." << std::endl;
+    }
+
+    std::ofstream output_file("data.bin",std::ios::binary);
+
+    if (!output_file.is_open()) {
+        std::cerr << "Erreur lors de l'ouverture du fichier de sortie." << std::endl;
+    }
+
+    output_file << file.rdbuf();
+
+    file.close();
+    output_file.close();
+
+
+    std::cout << "ecriture fini" << std::endl;
+
+}
+
+
+void donnee::recover(){
+
+    std::ifstream file("data.bin", std::ios::binary);
+
+    if (!file.is_open()) {
+        std::cerr << "Erreur lors de l'ouverture du fichier de sortie." << std::endl;
+    }
+
+    std::ofstream output_file("data2.png",std::ios::binary);
+
+    if (!output_file.is_open()) {
+        std::cerr << "Erreur lors de l'ouverture du fichier de sortie." << std::endl;
+    }
+
+    output_file << file.rdbuf();
+
+    file.close();
+    output_file.close();
+    std::cout << "recover fini" << std::endl;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 ---------------------------------------------------------------------------------------------------
 

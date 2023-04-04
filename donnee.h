@@ -1,6 +1,4 @@
-//
-// Created by m.batailler on 29/03/2023.
-//
+
 
 #ifndef PROJET_COMM_DONNEE_H
 #define PROJET_COMM_DONNEE_H
@@ -25,6 +23,7 @@ struct ParamImg {
 
 class donnee {
 private :
+    std::string data;
     int num_ecre;
     int dimHmur, dimLmur;
     int state_vec;
@@ -39,8 +38,12 @@ public :
     void getdata();
     void setdata(int, int, int, int, int, int, int, int);
     int writedata();
-    void writefirstdata();
+    //void test();
+    //void writefirstdata();
     //void clearjson();
+    void test(string);
+
+    void recover();
 };
 
 

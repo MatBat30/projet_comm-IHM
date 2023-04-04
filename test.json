@@ -1,0 +1,47 @@
+{
+  "dimension" : {
+    "Height" : 0,
+    "Width" : 0
+  },
+  "setting": {
+    "image 1": {
+      "dimImageH": 200,
+      "dimImageW": 700,
+      "nbPixel": 1920,
+      "posImageX": 1920,
+      "posImageY": 0
+    },
+
+    "image 2": {
+      "dimImageH": 200,
+      "dimImageW": 700,
+      "nbPixel": 1920,
+      "posImageX": 1920,
+      "posImageY": 0
+    },
+
+    "image 3": {
+      "dimImageH": 200,
+      "dimImageW": 700,
+      "nbPixel": 1920,
+      "posImageX": 1920,
+      "posImageY": 0
+    },
+
+    "image 4": {
+      "dimImageH": 200,
+      "dimImageW": 700,
+      "nbPixel": 1920,
+      "posImageX": 1920,
+      "posImageY": 0
+    },
+
+    "image 5": {
+      "dimImageH": 200,
+      "dimImageW": 700,
+      "nbPixel": 1920,
+      "posImageX": 1920,
+      "posImageY": 0
+    }
+  }
+}
