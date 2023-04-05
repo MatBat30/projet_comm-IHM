@@ -1,47 +1,43 @@
 {
-  "dimension" : {
-    "Height" : 0,
-    "Width" : 0
+"setting": {
+  "image 1": {
+    "Height": 200,
+    "Width": 700,
+    "nbPixel": 1920,
+    "posX": 1920,
+    "posY": 0
   },
-  "setting": {
-    "image 1": {
-      "dimImageH": 200,
-      "dimImageW": 700,
-      "nbPixel": 1920,
-      "posImageX": 1920,
-      "posImageY": 0
-    },
 
-    "image 2": {
-      "dimImageH": 200,
-      "dimImageW": 700,
-      "nbPixel": 1920,
-      "posImageX": 1920,
-      "posImageY": 0
-    },
+  "image 2": {
+    "Height": 200,
+    "Width": 700,
+    "nbPixel": 1920,
+    "posX": 1920,
+    "posY": 0
+  },
 
-    "image 3": {
-      "dimImageH": 200,
-      "dimImageW": 700,
-      "nbPixel": 1920,
-      "posImageX": 1920,
-      "posImageY": 0
-    },
+  /* n x bloc de parametre corespondant au nombre d'écrant "n"  */
 
-    "image 4": {
-      "dimImageH": 200,
-      "dimImageW": 700,
-      "nbPixel": 1920,
-      "posImageX": 1920,
-      "posImageY": 0
-    },
-
-    "image 5": {
-      "dimImageH": 200,
-      "dimImageW": 700,
-      "nbPixel": 1920,
-      "posImageX": 1920,
-      "posImageY": 0
-    }
+ "image n": {
+    "Height": 200,
+    "Width": 700,
+    "nbPixel": 1920,
+    "posX": 1920,
+    "posY": 0
   }
+
+},
+ "dictionary " :{
+    "name": /*string*/,
+    "type": /*string*/,
+    "executable": /*string*/,
+
+    "param":{
+       "number":/*int*/,
+       "parm1":/*string*/,
+       "parm2":/*string*/,
+       "parm3":/*string*/,
+       "parm4":/*string*/
+       }
+}
 }

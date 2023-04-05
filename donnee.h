@@ -12,20 +12,20 @@
 using namespace std;
 
 struct ParamImg {
-    int nbpixel;
-    int posXimg;
-    int posYimg;
-    int dimHimg;
-    int dimLimg;
-    int posXimg2;
+    int nbPixel;
+    int posX;
+    int posY;
+    int height;
+    int width;
+    int ratio;
 };
 
 
 class donnee {
 private :
     std::string data;
-    int num_ecre;
-    int dimHmur, dimLmur;
+    int numberScreen;
+    int widthMur, heightMur;
     int state_vec;
     std::vector<int> vec;
 

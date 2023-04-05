@@ -1,0 +1,110 @@
+void donnee::recover(){
+
+    std::ifstream file("data.bin", std::ios::binary);
+
+    if (!file.is_open()) {
+        std::cerr << "Erreur lors de l'ouverture du fichier de sortie." << std::endl;
+    }
+
+    std::ofstream output_file("data2.jpg",std::ios::binary);
+
+    if (!output_file.is_open()) {
+        std::cerr << "Erreur lors de l'ouverture du fichier de sortie." << std::endl;
+    }
+
+    output_file << file.rdbuf();
+
+    file.close();
+    output_file.close();
+    std::cout << "recover fini" << std::endl;
+
+}
+
+CODE POUR CONVERTIR DE BINAIRE A JPEG
+
+/*----------------------------------------------------------------------------------------------------------------------*/
+void donnee::convert (string path){
+
+    std::ifstream file(path, std::ios::binary);
+
+    if (!file.is_open()) {
+        std::cerr << "Erreur lors de l'ouverture du fichier de sortie." << std::endl;
+    }
+
+    std::ofstream output_file("data.bin",std::ios::binary);
+
+    if (!output_file.is_open()) {
+        std::cerr << "Erreur lors de l'ouverture du fichier de sortie." << std::endl;
+    }
+
+    output_file << file.rdbuf();
+
+    file.close();
+    output_file.close();
+
+
+    std::cout << "ecriture fini" << std::endl;
+
+}
+
+CODE POUR CONVERTIR JPEG EN BINAIRE [PREND EN PARAMETRE LE CHEMIN VERS L'IMAGE]
+
+/*----------------------------------------------------------------------------------------------------------------------*/
+
+
+void donnee::clearjson() {
+std::string json_file_path = "dimmension.json";
+std::ifstream json_file(json_file_path);
+if (!json_file.is_open()) {
+
+	std::cerr << "Erreur d'ouverture du fichier : " << json_file_path << std::endl;
+}
+std::string json_str((std::istreambuf_iterator<char>(json_file)), std::istreambuf_iterator<char>());
+json_str.erase(170, 31);
+
+json_file.close();
+
+std::cout << json_str << "\n";
+
+}
+
+CODE POUR SUPRIMER UN CARACTÉRE DANS UN FICHIER JSON
+
+/*----------------------------------------------------------------------------------------------------------------------*/
+
+
+quell parametre il a besoin et dans quelle ordre
+"dictionary " :{
+type animation
+word nome de l'animation,
+setting et son nombre de parametre
+nom de l'executable a utilisé
+quelle parametre il a besoin et dans quelle ordre
+nom de l'entete de l'executable a identifier
+
+                                                   }
+                                                 }
+
+SYNTAXE DU FICHIER JSON POUR AJOUTER UNE FONCTION + MOT DICTIONAIRE
+
+/*----------------------------------------------------------------------------------------------------------------------*/
+
+1 + (n - 1) * 6
+
+SUITE LOGIQUE POUR CALCULER LA POSITION D'UNE VARIABLE A AUNE POSITION EXACT DANS UN VECTEUR
+
+/*----------------------------------------------------------------------------------------------------------------------*/
+
+ cout << "Veuillez entrer le chemin d'acces de l'image : " << endl;
+    cin >>path;
+    root = "C:/Users/m.batailler/Documents/projet comm/";
+    root.append(path);
+    cout << root << endl;
+
+CODE POUR RECUPERER UN CHEMIN D'ACCES A UNE IMAGE
+/*----------------------------------------------------------------------------------------------------------------------*/
+
+
+
+
+
