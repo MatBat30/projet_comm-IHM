@@ -6,9 +6,26 @@
 
 nlohmann::json j ;
 
-void donnee::getdata( )
-{
-    std::cout << "get\n";
+vector<char> donnee::getdata(const std::string& nomFichier) {
+    fileName = "data2.png";
+
+
+    // Ouvrir le fichier en mode binaire
+    std::ifstream fichier(nomFichier, std::ios::binary);
+
+    // Vérifier si le fichier est ouvert correctement
+    if (!fichier.is_open()) {
+        std::cout << "Erreur lors de l'ouverture du fichier : " << nomFichier << std::endl;
+        return std::vector<char>(); // Retourner un vecteur vide en cas d'erreur
+    }
+
+    // Lire le contenu du fichier dans un std::vector<char>
+    std::vector<char> contenuFichier((std::istreambuf_iterator<char>(fichier)), std::istreambuf_iterator<char>());
+
+    // Fermer le fichier
+    fichier.close();
+
+        return contenuFichier;
 }
 
 void donnee::setdata(int nbpixele, int posXimge, int posYimge, int dimHecre, int posXimg2, int dimLecre, int num_ecre,int numtotecra)

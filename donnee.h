@@ -23,27 +23,25 @@ struct ParamImg {
 
 class donnee {
 private :
-    std::string data;
+
     int numberScreen;
     int widthMur, heightMur;
     int state_vec;
     std::vector<int> vec;
 
     ParamImg ParamVar{};
-    std::string nom;
-    std::string num;
-    std::string temp_nom;
+    string nom;
+    string num;
+    string temp_nom;
+    string fileName;
+    string data;
+    vector<char> message;
 
 public :
-    void getdata();
+    std::vector<char> getdata(const std::string&);
     void setdata(int, int, int, int, int, int, int, int);
     int writedata();
-    //void test();
-    //void writefirstdata();
-    //void clearjson();
-    void test(string);
 
-    void recover();
 };
 
 

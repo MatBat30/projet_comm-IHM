@@ -1,17 +1,17 @@
-#include <iostream>
 #include "donnee.h"
+#include "comm.h"
+
+#pragma comment(lib, "ws2_32.lib")
 
 int main() {
-    std::string root;
-    std::string path;
-
-    std::cout << "Hello, World!" << std::endl;
-
-
-    donnee d ;
-//    d.setdata(500, 50, 100, 1400, 1400, 300, 1, 3);
-//    d.setdata(500, 50, 100, 1400, 1400, 300, 2, 3);
-//    d.setdata(500, 50, 100, 1400, 1400, 300, 3, 3);
-//    d.writedata();
+    comm c;
+    donnee d;
+    std:: string monImage = "img1.png";
+    std::vector<char> contenuImage = d.getdata(monImage);
+    c.init();
+    c.connectToServer();
+    c.sendSize(contenuImage);
+    c.sendMessage(contenuImage);
+    c.closeConnection();
     return 0;
 }

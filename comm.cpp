@@ -1,112 +1,74 @@
-//
-// Created by m.batailler on 31/03/2023.
-//
-
-#include <cstring>
 #include "comm.h"
-#pragma comment(lib, "ws2_32.lib")
 
-comm::comm(char* serveur, int numPort, int portSortie) {
-    ServeurName = new char[strlen(serveur) + 1];
-    strcpy(ServeurName, serveur);
-    PortServeur = numPort;
-    PortSortie = portSortie;
-    InitComm();
-}
+int  comm::init() {
 
-void comm::InitComm() {
 
-    WSADATA wsaData;
 
-    lg = sizeof (adr_serveur);
 
-    WSAStartup(MAKEWORD(2,0), &wsaData);
 
-    IdSoket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-
-    if (IdSoket == INVALID_SOCKET) {
-        printf("le socket a echoué avec l'erreur : %d\n", WSAGetLastError());
-        WSACleanup();
-    }else
-    {
-        printf("socket initialiser \n");
-    }
-    infoClient.sin_family = AF_INET;
-    infoClient.sin_port = htons(PortSortie);
-    infoClient.sin_addr.s_addr = INADDR_ANY;
-
-    bind (IdSoket, (sockaddr*)&infoClient , sizeof ( infoClient));
-
-    if ((hs = gethostbyname(ServeurName)) == NULL)
-    {
-        if((hs=gethostbyaddr(ServeurName,4,2))==NULL)
-        {
-            exit(4);
-        }
-    }
-
-    delete[] ServeurName;
-    ServeurName = new char[strlen(hs->h_name)];
-    strcpy(ServeurName, hs->h_name);
-
-    memcpy(&adrIp,hs->h_addr, hs->h_length);
-    strcpy(AddrIP, inet_ntoa(adrIp));
-
-    adr_serveur.sin_family = AF_INET;
-    adr_serveur.sin_port = htons(PortServeur);
-    adr_serveur.sin_addr.s_addr = inet_addr(AdrIP);
-
-    startComm();
-
-}
-
-void comm::startComm() {
-    if (connect(IdSoket, (struct sockaddr*)&adr_serveur, sizeof (adr_serveur)) == SOCKET_ERROR) {
-        printf("la connexion a echoué avec l'erreur : %d\n", WSAGetLastError());
-        closesocket(IdSoket);
-        WSACleanup();
-    }else
-    {
-        printf("message envoyer \n");
-    }
-
-}
-
-int comm::sending(void* message, int taille) {
-    int NbOctetsEcrits;
-    NbOctetsEcrits = send(IdSoket, (char*) message, taille, 0);
-    if (NbOctetsEcrits == SOCKET_ERROR) {
-        printf("l'envoie a echoué avec l'erreur: %d\n", WSAGetLastError());
-        endComm();
-        return 1;
-    } else
-    {
-        printf("message envoyer \n");
-    }
-
-    return 0;
-}
-
-int comm::receive(void* message,int maxLenght) {
-    int NbOctetsLus;
-    NbOctetsLus= recv(IdSoket, (char*)message, maxLenght, 0);
-
-    if (NbOctetsLus == SOCKET_ERROR) {
-        printf("la reception a echoué avec l'erreur: %d\n", WSAGetLastError());
-        endComm();
+    // Initialise Winsock
+    WSAData wsaData;
+    int wsaResult = WSAStartup(MAKEWORD(2, 2), &wsaData);
+    if (wsaResult != 0) {
+        std::cerr << "WSAStartup failed with error: " << wsaResult << std::endl;
         return 1;
     }
-    else
-    {
-        printf("message reçu \n");
+    // Creation du socket
+     clientSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+    if (clientSocket == INVALID_SOCKET) {
+        std::cerr << "Socket creation failed with error: " << WSAGetLastError() << std::endl;
+        WSACleanup();
+        return 1;
     }
-    return 0;
+
+    // mise en place de l'addres server et du port
+
+    serverAddress.sin_family = AF_INET;
+    serverAddress.sin_port = htons(48569);
+    serverAddress.sin_addr.s_addr = inet_addr("172.16.8.111");
+
 }
 
+int comm::connectToServer() {
+    // Connect to the server
+    int result = connect(clientSocket, (struct sockaddr *)&serverAddress, sizeof(serverAddress));
+    if (result == SOCKET_ERROR) {
+        std::cerr << "Connection failed with error: " << WSAGetLastError() << std::endl;
+        closesocket(clientSocket);
+        WSACleanup();
+        return 1;
+    }
+    std::cout << "Connected to server" << std::endl;
 
-int comm::endComm() {
-    closesocket(IdSoket);
+}
+
+void comm::sendSize(std::vector<char> nomFichier) {
+    imageSize = static_cast<int>(nomFichier.size());
+    send(clientSocket, (const char*)&imageSize, sizeof(imageSize), 0);
+}
+void comm::sendMessage(std::vector<char> contenuImage) {
+
+    // Send a message to the server
+    // convert string to const char *
+    int bytesSent = send(clientSocket, contenuImage.data(), imageSize, 0);
+    if (bytesSent == SOCKET_ERROR) {
+        std::cerr << "Erreur lors de l'envoi de l'image : " << WSAGetLastError() << std::endl;
+    } else {
+        std::cout << "Image envoyée avec succès (" << bytesSent << " octets)." << std::endl;
+    }
+}
+
+void comm::receiveMessage() {
+    // Receive a message from the server
+    char buffer[512];
+    int receivedBytes = recv(clientSocket, buffer, sizeof(buffer), 0);
+    if (receivedBytes > 0) {
+        buffer[receivedBytes] = '\0';
+        std::cout << "Received from server: " << buffer << std::endl;
+    }
+}
+
+void comm::closeConnection() {
+    closesocket(clientSocket);
     WSACleanup();
-    std::cout<<"Communication fermée"<<std::endl;
-    return 0;
 }

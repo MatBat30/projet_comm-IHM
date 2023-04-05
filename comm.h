@@ -1,45 +1,37 @@
-//
-// Created by m.batailler on 31/03/2023.
-//
-
 #ifndef PROJET_COMM_COMM_H
 #define PROJET_COMM_COMM_H
 
-#pragma once
 #include <iostream>
 #include <winsock2.h>
 #include <string>
 #include <fstream>
+#include <vector>
 
-struct sockaddr_in infoClient;
-struct hostent* hs;
-struct in_addr adrIp;
-struct sockaddr_in adr_serveur;
-SOCKET IdSoket;
 
 class comm {
-private:
-    char* ServeurName;
-    int PortServeur;
-    int PortSortie;
-    int lg;
-    char AddrIP[16];
-    char AdrIP[16];
+    public:
+    int init();
 
-    void startComm();
+    int connectToServer();
 
-public:
-    comm(char *serveur, int numPort, int portSortie);
+    void sendMessage(std::vector<char> nomFichier);
 
-    void communication(char* , int);
+    void closeConnection();
 
-    void InitComm();
+    void receiveMessage();
+    void sendSize(std::vector<char>);
+    private:
+    int imageSize;
+    //char * adrIP;
 
-    int endComm();
+    int port;
 
-    int receive(void *message, int maxLenght);
+    struct sockaddr_in serverAddress;
 
-    int sending(void *message, int taille);
+    SOCKET clientSocket;
+
+
+
 };
 
 
