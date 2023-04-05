@@ -2,7 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include "donnee.h"
-#include "cmake-build-debug/json.hpp"
+#include "json.hpp"
 
 nlohmann::json j ;
 
