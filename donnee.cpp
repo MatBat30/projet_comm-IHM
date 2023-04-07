@@ -7,15 +7,16 @@
 nlohmann::json j ;
 
 vector<char> donnee::getdata(const std::string& nomFichier) {
-    fileName = "data2.png";
+
+    fileName = nomFichier;
 
 
     // Ouvrir le fichier en mode binaire
-    std::ifstream fichier(nomFichier, std::ios::binary);
+    std::ifstream fichier(fileName, std::ios::binary);
 
     // Vérifier si le fichier est ouvert correctement
     if (!fichier.is_open()) {
-        std::cout << "Erreur lors de l'ouverture du fichier : " << nomFichier << std::endl;
+        std::cout << "Erreur lors de l'ouverture du fichier : " << fileName << std::endl;
         return std::vector<char>(); // Retourner un vecteur vide en cas d'erreur
     }
 

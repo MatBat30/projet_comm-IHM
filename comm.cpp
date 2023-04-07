@@ -24,8 +24,8 @@ int  comm::init() {
     // mise en place de l'addres server et du port
 
     serverAddress.sin_family = AF_INET;
-    serverAddress.sin_port = htons(48569);
-    serverAddress.sin_addr.s_addr = inet_addr("172.16.8.111");
+    serverAddress.sin_port = htons(21);
+    serverAddress.sin_addr.s_addr = inet_addr("192.168.1.124");
 
 }
 
