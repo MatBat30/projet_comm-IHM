@@ -1,13 +1,9 @@
 #include "comm.h"
 
 int  comm::init() {
-
-
-
-
-
-    // Initialise Winsock
     WSAData wsaData;
+    // Initialise Winsock
+
     int wsaResult = WSAStartup(MAKEWORD(2, 2), &wsaData);
     if (wsaResult != 0) {
         std::cerr << "WSAStartup failed with error: " << wsaResult << std::endl;
@@ -24,7 +20,7 @@ int  comm::init() {
     // mise en place de l'addres server et du port
 
     serverAddress.sin_family = AF_INET;
-    serverAddress.sin_port = htons(21);
+    serverAddress.sin_port = htons(45831);
     serverAddress.sin_addr.s_addr = inet_addr("192.168.1.124");
 
 }

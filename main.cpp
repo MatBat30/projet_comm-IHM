@@ -6,7 +6,7 @@
 int main() {
     comm c;
     donnee d;
-    std:: string monImage = "output.json";
+    std:: string monImage = "projet_comm.ilk";
     std::vector<char> contenuImage = d.getdata(monImage);
     c.init();
     c.connectToServer();

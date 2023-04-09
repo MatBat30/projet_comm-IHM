@@ -31,7 +31,6 @@ vector<char> donnee::getdata(const std::string& nomFichier) {
 
 void donnee::setdata(int nbpixele, int posXimge, int posYimge, int dimHecre, int posXimg2, int dimLecre, int num_ecre,int numtotecra)
 {
-
     this->numberScreen = num_ecre;
 
     ParamVar.nbPixel = nbpixele;
