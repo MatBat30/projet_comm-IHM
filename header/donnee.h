@@ -29,7 +29,7 @@ private :
     int state_vec;
     std::vector<int> vec;
 
-    ParamImg ParamVar{};
+    ParamImg Param{};
     string nom;
     string num;
     string temp_nom;

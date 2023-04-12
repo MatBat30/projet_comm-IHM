@@ -16,13 +16,15 @@ class comm {
     int connectToServer();
 
     void sendMessage(std::vector<char> nomFichier);
-
+    void sendExtension(char *extension);
     void closeConnection();
 
     void receiveMessage();
     void sendSize(std::vector<char>);
-    private:
+
+private:
     int imageSize;
+    int fileSize;
     //char * adrIP;
 
     int port;

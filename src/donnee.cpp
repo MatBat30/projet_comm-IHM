@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <sstream>
 #include "../header/donnee.h"
@@ -33,12 +32,12 @@ void donnee::setdata(int nbpixele, int posXimge, int posYimge, int dimHecre, int
 {
     this->numberScreen = num_ecre;
 
-    ParamVar.nbPixel = nbpixele;
-    ParamVar.posX = posXimge ;
-    ParamVar.posY = posYimge ;
-    ParamVar.height = dimHecre ;
-    ParamVar.width = dimLecre ;
-    ParamVar.ratio = posXimg2;
+    Param.nbPixel = nbpixele;
+    Param.posX = posXimge ;
+    Param.posY = posYimge ;
+    Param.height = dimHecre ;
+    Param.width = dimLecre ;
+    Param.ratio = posXimg2;
 
 
     widthMur = dimHecre;
@@ -52,12 +51,12 @@ void donnee::setdata(int nbpixele, int posXimge, int posYimge, int dimHecre, int
     temp_nom=nom.append(num);
 
     vec.push_back(numtotecra);
-    vec.push_back(ParamVar.nbPixel);
-    vec.push_back(ParamVar.posX);
-    vec.push_back(ParamVar.posY);
-    vec.push_back(ParamVar.height);
-    vec.push_back(ParamVar.width);
-    vec.push_back(ParamVar.ratio);
+    vec.push_back(Param.nbPixel);
+    vec.push_back(Param.posX);
+    vec.push_back(Param.posY);
+    vec.push_back(Param.height);
+    vec.push_back(Param.width);
+    vec.push_back(Param.ratio);
 
 
     for (int i = 0; i < vec.size(); ++i) {

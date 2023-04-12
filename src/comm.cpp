@@ -20,8 +20,8 @@ int  comm::init() {
     // mise en place de l'addres server et du port
 
     serverAddress.sin_family = AF_INET;
-    serverAddress.sin_port = htons(45831);
-    serverAddress.sin_addr.s_addr = inet_addr("192.168.1.124");
+    serverAddress.sin_port = htons(8080);
+    serverAddress.sin_addr.s_addr = inet_addr("172.16.8.111");
 
 }
 
@@ -38,19 +38,31 @@ int comm::connectToServer() {
 
 }
 
-void comm::sendSize(std::vector<char> nomFichier) {
-    imageSize = static_cast<int>(nomFichier.size());
-    send(clientSocket, (const char*)&imageSize, sizeof(imageSize), 0);
-}
-void comm::sendMessage(std::vector<char> contenuImage) {
+//void comm::sendSize(std::vector<char> nomFichier) {
+//    imageSize = static_cast<int>(nomFichier.size());
+//    std::cout << "Taille de l'image : " << imageSize <<" octets"<< std::endl;
+//    send(clientSocket, (const char*)&imageSize, sizeof(imageSize), 0);
+//}
 
+void comm::sendMessage(std::vector<char> contenuImage) {
     // Send a message to the server
     // convert string to const char *
-    int bytesSent = send(clientSocket, contenuImage.data(), imageSize, 0);
+    int bytesSent = send(clientSocket, contenuImage.data(), contenuImage.size(), 0);
     if (bytesSent == SOCKET_ERROR) {
         std::cerr << "Erreur lors de l'envoi de l'image : " << WSAGetLastError() << std::endl;
     } else {
-        std::cout << "Image envoyée avec succès (" << bytesSent << " octets)." << std::endl;
+        std::cout << "Image envoyee avec succes (" << bytesSent << " octets)." << std::endl;
+    }
+}
+
+void comm::sendExtension(char* extension) {
+    std::cout << "Taille de l'extention : " << strlen(extension) <<" octets"<< std::endl;
+    int bytesSent = send(clientSocket, extension, strlen(extension), 0);
+std::cout << "Taille de l'envoie : " << bytesSent <<" octets"<< std::endl;
+    if (bytesSent < 0) {
+        std::cerr << "Erreur lors de l'envoi de l'extention : " << WSAGetLastError() << std::endl;
+    } else {
+        std::cout << "extention envoyee avec succes (" << bytesSent << " octets)." << std::endl;
     }
 }
 
@@ -68,3 +80,5 @@ void comm::closeConnection() {
     closesocket(clientSocket);
     WSACleanup();
 }
+
+
