@@ -1,8 +1,8 @@
 
 #include <iostream>
 #include <sstream>
-#include "donnee.h"
-#include "json.hpp"
+#include "../header/donnee.h"
+#include "../header/json.hpp"
 
 nlohmann::json j ;
 

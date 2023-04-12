@@ -1,5 +1,5 @@
-#include "donnee.h"
-#include "comm.h"
+#include "header/donnee.h"
+#include "header/comm.h"
 
 #pragma comment(lib, "ws2_32.lib")
 

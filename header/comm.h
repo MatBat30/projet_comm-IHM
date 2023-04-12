@@ -2,7 +2,7 @@
 #define PROJET_COMM_COMM_H
 
 #include <iostream>
-#include <winsock2.h>
+#include <WinSock2.h>
 #include <string>
 #include <fstream>
 #include <vector>
