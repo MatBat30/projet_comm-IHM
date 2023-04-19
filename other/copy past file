@@ -102,6 +102,17 @@ SUITE LOGIQUE POUR CALCULER LA POSITION D'UNE VARIABLE A AUNE POSITION EXACT DAN
     cout << root << endl;
 
 CODE POUR RECUPERER UN CHEMIN D'ACCES A UNE IMAGE
+
+/*----------------------------------------------------------------------------------------------------------------------*/
+
+//void comm::sendSize(std::vector<char> nomFichier) {
+//    imageSize = static_cast<int>(nomFichier.size());
+//    std::cout << "Taille de l'image : " << imageSize <<" octets"<< std::endl;
+//    send(clientSocket, (const char*)&imageSize, sizeof(imageSize), 0);
+//}
+
+CODE POUR ENVOYER SEULEMENT LA TAILLE D'UN FICHIER
+
 /*----------------------------------------------------------------------------------------------------------------------*/
 
 

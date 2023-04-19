@@ -38,10 +38,12 @@ private :
     vector<char> message;
 
 public :
+    std::string donnee::create_image_block(int n);
     std::vector<char> getdata(const std::string&);
     void setdata(int, int, int, int, int, int, int, int);
     int writedata();
 
+    void testJson();
 };
 
 

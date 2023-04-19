@@ -1,43 +1,77 @@
 {
-"setting": {
-  "image 1": {
-    "Height": 200,
-    "Width": 700,
-    "nbPixel": 1920,
-    "posX": 1920,
-    "posY": 0
+  "setting": {
+    "image 1": {
+      "Height": 200 /*int*/,
+      "Width": 700 /*int*/,
+      "ratio": 16/9 /*float*/,
+      "nbPixel": 1920 /*int*/,
+      "posX": 1920 /*int*/,
+      "posY": 0 /*int*/,
+      "animation":{
+        "rotation":{
+             "speed": "fast"/*string*/,/*fast, medium, slow, null*/
+             "direction":"clockwise" /*string*/, /*clockwise, counter-clockwise, null*/
+             "rotation axis":"center" /*string*/, /*center, top, bottom, left, right , top left, top right, bottom left, bottom right, , null*/ /*-->axe de rotation de image */
+        } ,
+        "translation":{
+          "speed":"null" /*string*/,/*fast, medium, slow, null*/
+          "direction":"null" /*string*/, /*left, right, up, down, null*/
+        }
+      }
   },
 
-  "image 2": {
-    "Height": 200,
-    "Width": 700,
-    "nbPixel": 1920,
-    "posX": 1920,
-    "posY": 0
+    "image 2": {
+      "Height": 200 /*int*/,
+      "Width": 700 /*int*/,
+      "ratio": 4/3 /*float*/,
+      "nbPixel": 1920 /*int*/,
+      "posX": 1920 /*int*/,
+      "posY": 0 /*int*/,
+      "animation":{
+        "rotation":{
+          "speed": "fast"/*string*/,/*fast, medium, slow, null*/
+          "direction":"clockwise" /*string*/, /*clockwise, counter-clockwise, null*/
+          "rotation axis":"center" /*string*/, /*center, top, bottom, left, right , top left, top right, bottom left, bottom right, , null*/ /*-->axe de rotation de image */
+        } ,
+        "translation":{
+          "speed": "null"/*string*/,/*fast, medium, slow, null*/
+          "direction":"null" /*string*/, /*left, right, up, down, null*/
+        }
+      }
+    },
+
+    /* n x bloc de parametre corespondant au nombre d'écrant "n"  */
+
+    "image n": {
+      "Height": 200 /*int*/,
+      "Width": 700 /*int*/,
+      "ratio": 16/10 /*float*/,
+      "nbPixel": 1920 /*int*/,
+      "posX": 1920 /*int*/,
+      "posY": 0 /*int*/,
+      "animation":{
+        "rotation":{
+          "speed": "fast"/*string*/,/*fast, medium, slow, null*/
+          "direction":"clockwise" /*string*/, /*clockwise, counter-clockwise, null*/
+          "rotation axis":"center" /*string*/, /*center, top, bottom, left, right , top left, top right, bottom left, bottom right, , null*/ /*-->axe de rotation de image */
+        } ,
+        "translation":{
+          "speed":"medium" /*string*/,/*fast, medium, slow, null*/
+          "direction":"down" /*string*/, /*left, right, up, down, null*/
+        }
+      }
+    }
   },
-
-  /* n x bloc de parametre corespondant au nombre d'écrant "n"  */
-
- "image n": {
-    "Height": 200,
-    "Width": 700,
-    "nbPixel": 1920,
-    "posX": 1920,
-    "posY": 0
+   "dictionary ":{
+      "name":"translation" /*string*/,
+      "type":".ini" /*string*/,
+      "executable":"translationCode" /*string*/,
+      "param":{
+         "number":4 /*int*/,
+         "parm1":"newParam" /*string*/,
+         "parm2":"newParam" /*string*/,
+         "parm3":"newParam" /*string*/,
+         "parm4":"newParam" /*string*/
+    }
   }
-
-},
- "dictionary " :{
-    "name": /*string*/,
-    "type": /*string*/,
-    "executable": /*string*/,
-
-    "param":{
-       "number":/*int*/,
-       "parm1":/*string*/,
-       "parm2":/*string*/,
-       "parm3":/*string*/,
-       "parm4":/*string*/
-       }
-}
 }
