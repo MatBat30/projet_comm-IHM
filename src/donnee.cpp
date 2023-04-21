@@ -59,10 +59,22 @@ void donnee::setdata(int numberScreen_,int heightWall_, int widthWall_ ,int heig
     std::string numeroecr = std::to_string(numberScreen_);
 
     nomVariable = nom.append(numeroecr);
-    vector<int> paramImage = {Image.posX, Image.posY, Image.heightImage, Image.widthImage, Image.ratio, Image.numberPixel};
 
-    vector<string> paramAnimation = {animation.rotationSpeed, animation.rotationDirection, animation.rotationAxis,
-                                     animation.translationSpeed, animation.translationDirection};
+    paramImage.push_back(Image.numberPixel);
+    paramImage.push_back(Image.heightImage);
+    paramImage.push_back(Image.widthImage);
+    paramImage.push_back(Image.posX);
+    paramImage.push_back(Image.posY);
+
+    paramImage.push_back(Image.ratio);
+
+    paramAnimation.push_back(animation.rotationSpeed);
+    paramAnimation.push_back(animation.rotationDirection);
+    paramAnimation.push_back(animation.rotationAxis);
+    paramAnimation.push_back(animation.translationSpeed);
+    paramAnimation.push_back(animation.translationDirection);
+
+
 
     for (int i = 0; i < paramImage.size(); ++i) {
         std::cout << paramImage.at(i) << ";";
@@ -75,7 +87,7 @@ void donnee::setdata(int numberScreen_,int heightWall_, int widthWall_ ,int heig
 
 }
 
-int donnee::writeData(int numberScreen) {
+void donnee::writeData(int numberScreen) {
     int nombreEcrant = numberScreen ;
     std::ostringstream json_output;
     json_output << "{" << std::endl;

@@ -51,9 +51,9 @@ public :
                        const string &,const string &, const string &,
                        const string &, const string &);
 
-    int writeData(int numberScreen);
+    void writeData(int numberScreen);
 
-    void setdata(int, int , int , int , int , int , int , int ,int ,string , string , string , string ,string );
+    void setdata(int, int , int , int , int , int , int , int ,int ,string rotationSpeed_ = "NULL", string rotationDirection_ = "NULL" , string rotationAxis_ = "NULL" ,string translationSpeed_= "NULL", string translationDirection_ = "NULL");
 };
 
 
