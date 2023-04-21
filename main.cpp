@@ -6,17 +6,20 @@
 int main() {
     comm c;
     donnee d;
-    std:: string monImage = "../other/Toto.jpg";
-    std::vector<char> contenuImage = d.getdata(monImage);
+    std:: string monFichier;
+    std::vector<char> contenuFichier;
     const char *extensionJson = "jsn";
     const char *extensionJpg = "jpg";
-    const char *extensionIni = "ini";
-    //c.init();
-    //c.connectToServer();
-    //c.sendSize(contenuImage);
-    //c.sendExtension(const_cast<char *>(extensionJpg));
-    //c.sendMessage(contenuImage);
-    //c.closeConnection();
-    d.testJson();
+    const char *extensionCpp = "cpp";
+    c.init();
+    c.connectToServer();
+    d.writeData(1);
+    monFichier = "../cmake-build-debug/output.json";
+    contenuFichier = d.getdata(monFichier);
+    c.sendSize(contenuFichier);
+    c.sendExtension(const_cast<char *>(extensionJpg));
+    c.sendMessage(contenuFichier);
+    c.closeConnection();
+
     return 0;
 }

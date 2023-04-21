@@ -3,7 +3,7 @@
     "image 1": {
       "Height": 200 /*int*/,
       "Width": 700 /*int*/,
-      "ratio": 16/9 /*float*/,
+      "ratio": 16/9 /*int*/,
       "nbPixel": 1920 /*int*/,
       "posX": 1920 /*int*/,
       "posY": 0 /*int*/,

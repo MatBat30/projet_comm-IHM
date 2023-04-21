@@ -1,5 +1,3 @@
-
-
 #ifndef PROJET_COMM_DONNEE_H
 #define PROJET_COMM_DONNEE_H
 
@@ -11,39 +9,51 @@
 
 using namespace std;
 
-struct ParamImg {
-    int nbPixel;
+struct parametresImage {
     int posX;
     int posY;
-    int height;
-    int width;
+    int heightImage;
+    int widthImage;
     int ratio;
+    int numberPixel;
+};
+
+
+struct parametresAnimation {
+    string rotationSpeed;
+    string rotationDirection;
+    string rotationAxis;
+    string translationSpeed;
+    string translationDirection;
 };
 
 
 class donnee {
+
 private :
 
-    int numberScreen;
-    int widthMur, heightMur;
-    int state_vec;
-    std::vector<int> vec;
-
-    ParamImg Param{};
-    string nom;
-    string num;
-    string temp_nom;
-    string fileName;
-    string data;
+    vector<int> paramImage;
+    vector<string> paramAnimation;
     vector<char> message;
-
+    parametresImage Image{};
+    parametresAnimation animation{};
+    int widthWall;
+    int heightWall;
+    string nomVariable;
+    std::string nom;
+    std::string numeroecr;
 public :
-    std::string donnee::create_image_block(int n);
-    std::vector<char> getdata(const std::string&);
-    void setdata(int, int, int, int, int, int, int, int);
-    int writedata();
 
-    void testJson();
+    vector<char> getdata(const string&);
+
+    string createImageBlock( int, const string &, const string &, const string &, const string &,
+                       const string &, const string &posY,
+                       const string &,const string &, const string &,
+                       const string &, const string &);
+
+    int writeData(int numberScreen);
+
+    void setdata(int, int , int , int , int , int , int , int ,int ,string , string , string , string ,string );
 };
 
 
