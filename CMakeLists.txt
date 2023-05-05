@@ -3,4 +3,4 @@ project(projet_comm)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(projet_comm main.cpp src/donnee.cpp header/donnee.h src/comm.cpp header/comm.h)
+add_executable(projet_comm sources/main.cpp sources/src/donnee.cpp sources/header/donnee.h sources/src/comm.cpp sources/header/comm.h sources/main.cpp)
