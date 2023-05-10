@@ -19,23 +19,27 @@ int main() {
 
     // Configuration des données pour les images et animations
     d.setData(1, 200, 300, 1080, 1920, 1, 1, 1, 16/9, "1", "1", "1");
-    d.setData(2, 200, 300, 1080, 1920, 2, 2, 2, 2, "2", "2", "2", "2", "2");
-
+    d.setData(2, 200, 300, 1080, 5115, 2, 2, 2, 2, "2", "2", "2", "2", "2");
+    d.setAddresseIntermediaire("B8:27:EB:42:50:89");
+    d.setMacAddress("B8:27:EB:00:00:00");
+    d.setMacAddress("B8:27:EB:00:00:01");
+    d.setMacAddress("B8:27:EB:00:00:02");
+    d.setMacAddress("B8:27:EB:00:00:03");
     // Initialisation de la communication et connexion au serveur
-    c.init();
-    c.connectToServer();
+    //c.init();
+   // c.connectToServer();
 
     // Écriture des données dans un fichier JSON
-    d.writeData(1);
-    monFichier = "../cmake-build-debug/output.json";
+    d.writeData(2);
+    monFichier = "../sources/other/Toto.jpg";
 
     // Récupération du contenu du fichier JSON
     contenuFichier = d.getData(monFichier);
 
     // Envoi de la taille du fichier, de l'extension et du contenu du fichier au serveur
-    c.sendSize(contenuFichier);
-    c.sendExtension(const_cast<char *>(extensionJpg));
-    c.sendMessage(contenuFichier);
+    //c.sendSize(contenuFichier);
+   // c.sendExtension(const_cast<char *>(extensionJpg));
+   // c.sendMessage(contenuFichier);
 
     // Fermeture de la connexion
     c.closeConnection();

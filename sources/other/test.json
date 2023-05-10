@@ -1,6 +1,15 @@
 {
   "setting": {
+    "ecrans": {
+      "ecran1": "B8:27:EB:33:44:55" /*string*/,
+      "ecran2": "B8:27:EB:7E:4C:92" /*string*/,
+      "ecran3": "B8:27:EB14:78:9C " /*string*/,
+      "ecran4": "B8:27:EB:00:26:45" /*string*/,
+      "ecran5": "B8:27:EB:C0:00:08 " /*string*/,
+      "intermediaire": "B8:27:EB:42:50:89" /*string*/
+    },
     "image 1": {
+      "idEcran": 1 /*int*/,
       "Height": 200 /*int*/,
       "Width": 700 /*int*/,
       "ratio": 16/9 /*int*/,
@@ -11,16 +20,17 @@
         "rotation":{
              "speed": "fast"/*string*/,/*fast, medium, slow, null*/
              "direction":"clockwise" /*string*/, /*clockwise, counter-clockwise, null*/
-             "rotation axis":"center" /*string*/, /*center, top, bottom, left, right , top left, top right, bottom left, bottom right, , null*/ /*-->axe de rotation de image */
+             "rotation axis":"center" /*string*/ /*center, top, bottom, left, right , top left, top right, bottom left, bottom right, , null*/ /*-->axe de rotation de image */
         } ,
         "translation":{
           "speed":"null" /*string*/,/*fast, medium, slow, null*/
-          "direction":"null" /*string*/, /*left, right, up, down, null*/
+          "direction":"null" /*string*/ /*left, right, up, down, null*/
         }
       }
   },
 
     "image 2": {
+      "idEcran": 2 /*int*/,
       "Height": 200 /*int*/,
       "Width": 700 /*int*/,
       "ratio": 4/3 /*float*/,
@@ -31,11 +41,11 @@
         "rotation":{
           "speed": "fast"/*string*/,/*fast, medium, slow, null*/
           "direction":"clockwise" /*string*/, /*clockwise, counter-clockwise, null*/
-          "rotation axis":"center" /*string*/, /*center, top, bottom, left, right , top left, top right, bottom left, bottom right, , null*/ /*-->axe de rotation de image */
+          "rotation axis":"center" /*string*/ /*center, top, bottom, left, right , top left, top right, bottom left, bottom right, , null*/ /*-->axe de rotation de image */
         } ,
         "translation":{
           "speed": "null"/*string*/,/*fast, medium, slow, null*/
-          "direction":"null" /*string*/, /*left, right, up, down, null*/
+          "direction":"null" /*string*/ /*left, right, up, down, null*/
         }
       }
     },
@@ -43,6 +53,7 @@
     /* n x bloc de parametre corespondant au nombre d'écrant "n"  */
 
     "image n": {
+      "idEcran": n /*int*/,
       "Height": 200 /*int*/,
       "Width": 700 /*int*/,
       "ratio": 16/10 /*float*/,
@@ -53,11 +64,11 @@
         "rotation":{
           "speed": "fast"/*string*/,/*fast, medium, slow, null*/
           "direction":"clockwise" /*string*/, /*clockwise, counter-clockwise, null*/
-          "rotation axis":"center" /*string*/, /*center, top, bottom, left, right , top left, top right, bottom left, bottom right, , null*/ /*-->axe de rotation de image */
+          "rotation axis":"center" /*string*/ /*center, top, bottom, left, right , top left, top right, bottom left, bottom right, , null*/ /*-->axe de rotation de image */
         } ,
         "translation":{
           "speed":"medium" /*string*/,/*fast, medium, slow, null*/
-          "direction":"down" /*string*/, /*left, right, up, down, null*/
+          "direction":"down" /*string*/ /*left, right, up, down, null*/
         }
       }
     }

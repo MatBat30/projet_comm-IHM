@@ -30,9 +30,12 @@ struct parametresAnimation {
 
 class donnee {
 private:
-    // Vecteurs pour stocker les paramètres de l'image et de l'animation
+    // Vecteurs pour stocker les paramètres de l'image,adresse IP des raspberry et de l'animation
     vector<int> paramImage;
     vector<string> paramAnimation;
+    vector<string> addresseMacRaspberry;
+    string addresseMacIntermediaire;
+
     // Vecteur pour stocker le message
     vector<char> message;
     // Instances des structures pour stocker les paramètres
@@ -60,13 +63,15 @@ public:
 
     // Fonction pour écrire les données dans un fichier
     void writeData(int numberScreen);
-
+    void setAddresseIntermediaire(const string& addresseIntermediaire_);
     // Fonction pour définir les données avec des paramètres spécifiés
     void setData(int id, int posX, int posY, int heightImage, int widthImage, int ratio,
                  int numberPixel, int widthWall, int heightWall,
                  string rotationSpeed_ = "NULL", string rotationDirection_ = "NULL",
                  string rotationAxis_ = "NULL", string translationSpeed_ = "NULL",
                  string translationDirection_ = "NULL");
+
+    void setMacAddress(const string &macAddress_);
 };
 
 #endif //PROJET_COMM_DONNEE_H

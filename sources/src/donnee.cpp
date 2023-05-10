@@ -45,6 +45,7 @@ void donnee::setData(int numberScreen_, int heightWall_, int widthWall_, int hei
     this->widthWall = widthWall_;
     this->heightWall = heightWall_;
 
+
     // Affectation des valeurs aux membres de la structure animation
     animation.rotationSpeed = rotationSpeed_;
     animation.rotationDirection = rotationDirection_;
@@ -71,18 +72,30 @@ void donnee::setData(int numberScreen_, int heightWall_, int widthWall_, int hei
     paramAnimation.push_back(animation.translationSpeed);
     paramAnimation.push_back(animation.translationDirection);
 
-    std::cout << "paramImage" << endl;
-    for (int i = 0; i < paramImage.size(); ++i) {
-        std::cout << paramImage.at(i) << ";" << endl;
-    }
 
-    std::cout<< "paramAnimation" << endl;
-    for (int i = 0; i < paramAnimation.size(); ++i) {
-        std::cout << paramAnimation.at(i) << ";"<< endl;
-    }
-    std::cout << "set" << numeroecr << endl;
+    // Affichage des valeurs
+
+//    std::cout << "paramImage" << endl;
+//    for (int i = 0; i < paramImage.size(); ++i) {
+//        std::cout << paramImage.at(i) << ";" << endl;
+//    }
+//
+//    std::cout<< "paramAnimation" << endl;
+//    for (int i = 0; i < paramAnimation.size(); ++i) {
+//        std::cout << paramAnimation.at(i) << ";"<< endl;
+//    }
+//    std::cout << "set" << numeroecr << endl;
 
 
+}
+void donnee::setAddresseIntermediaire(const std::string &addrrIntermediaire_) {
+    string intermediaire = addrrIntermediaire_;
+    addresseMacIntermediaire = intermediaire;
+}
+
+void donnee::setMacAddress(const std::string &macAddress_) {
+    string macAddress = macAddress_;
+    addresseMacRaspberry.push_back(macAddress);
 }
 
 // Fonction qui écrit les données dans un fichier JSON
@@ -91,20 +104,26 @@ void donnee::writeData(int numberScreen) {
     std::ostringstream json_output;
     json_output << "{" << std::endl;
     json_output << "  \"setting\": {" << std::endl;
+    json_output << "    \"ecrans\": {" << std::endl;
+    for (int i = 1; i <= nombreEcrant; i++) {
+        json_output << "      \"ecran" << i << "\": \"" << addresseMacRaspberry.at(i-1) << "\"," << std::endl;
+    }
+    json_output << "      \"intermediaire\": \"" << addresseMacIntermediaire << "\"," << std::endl;
+    json_output << "    }," << std::endl;
 
     // Crée et ajoute des blocs d'image pour chaque écran dans le fichier JSON
     for (int i = 1; i <= nombreEcrant; ++i) {
-        std::string height = "200";
-        std::string width = "700";
-        std::string ratio = "1.6";
-        std::string nbPixel = "1920";
-        std::string posX = "1920";
-        std::string posY = "0";
-        std::string rotation_speed = "fast";
-        std::string rotation_direction = "clockwise";
-        std::string rotation_axis = "center";
-        std::string translation_speed = "medium";
-        std::string translation_direction = "down";
+        std::string height = std::to_string(paramImage.at(((i-1)*6)+1));//certainement inaxesible
+        std::string width = std::to_string(paramImage.at(((i-1)*6)+2));
+        std::string ratio = std::to_string(paramImage.at(((i-1)*6)+3));
+        std::string nbPixel = std::to_string(paramImage.at(((i-1)*6)+4));
+        std::string posX = std::to_string(paramImage.at(((i-1)*6)+5));
+        std::string posY = std::to_string(paramImage.at(((i-1)*6)+6));
+        std::string rotation_speed = paramAnimation.at(((i-1)*5)+1);
+        std::string rotation_direction = paramAnimation.at(((i-1)*5)+2);
+        std::string rotation_axis = paramAnimation.at(((i-1)*5)+3);
+        std::string translation_speed = paramAnimation.at(((i-1)*5)+4);
+        std::string translation_direction = paramAnimation.at(((i-1)*5)+5);
 
         json_output << createImageBlock(i, height, width, ratio, nbPixel, posX, posY,rotation_speed,
                                         rotation_direction, rotation_axis,translation_speed, translation_direction);
