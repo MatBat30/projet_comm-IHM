@@ -5,44 +5,39 @@
 
 int main() {
     // Création d'objets de communication et de données
-    comm c;
-    donnee d;
+    comm com;
+    donnee data;
 
     // Variables pour stocker les noms de fichiers et leur contenu
-    std::string monFichier;
-    std::vector<char> contenuFichier;
+    std::string monImage;
+    std::vector<char> contenuMessage;
 
     // Extensions des fichiers à envoyer
     const char *extensionJson = "jsn";
     const char *extensionJpg = "jpg";
-    const char *extensionCpp = "cpp";
+    const char *extensionCpp = "pso";
 
     // Configuration des données pour les images et animations
-    d.setData(1, 200, 300, 1080, 1920, 1, 1, 1, 16/9, "1", "1", "1");
-    d.setData(2, 200, 300, 1080, 5115, 2, 2, 2, 2, "2", "2", "2", "2", "2");
-    d.setAddresseIntermediaire("B8:27:EB:42:50:89");
-    d.setMacAddress("B8:27:EB:00:00:00");
-    d.setMacAddress("B8:27:EB:00:00:01");
-    d.setMacAddress("B8:27:EB:00:00:02");
-    d.setMacAddress("B8:27:EB:00:00:03");
+    data.setData(1, 1000, 100, 1080, 1920, 1, 10, 10, "1", "1", "1" , "NULL", "NULL");
+    data.setData(2, 2000, 200, 2080, 2920, 2, 20, 20, "NULL", "NULL", "NULL", "2", "2");
     // Initialisation de la communication et connexion au serveur
-    //c.init();
-   // c.connectToServer();
+    //com.init();
+    //com.connectToServer();
 
     // Écriture des données dans un fichier JSON
-    d.writeData(2);
-    monFichier = "../sources/other/Toto.jpg";
+      data.writeData(2);
+//    monImage = "../sources/other/Toto.jpg";
 
     // Récupération du contenu du fichier JSON
-    contenuFichier = d.getData(monFichier);
+//    contenuMessage = data.getData(monFichier);
 
     // Envoi de la taille du fichier, de l'extension et du contenu du fichier au serveur
-    //c.sendSize(contenuFichier);
-   // c.sendExtension(const_cast<char *>(extensionJpg));
-   // c.sendMessage(contenuFichier);
+    //com.sendSize(contenuMessage);
+    //com.sendExtension(const_cast<char *>(extensionJpg));
+    //com.sendMessage(contenuMessage);
 
     // Fermeture de la connexion
-    c.closeConnection();
+   // com.closeConnection();
 
     return 0;
 }

@@ -1,18 +1,8 @@
 {
   "setting": {
-    "ecrans": {
-      "ecran1": "B8:27:EB:33:44:55" /*string*/,
-      "ecran2": "B8:27:EB:7E:4C:92" /*string*/,
-      "ecran3": "B8:27:EB14:78:9C " /*string*/,
-      "ecran4": "B8:27:EB:00:26:45" /*string*/,
-      "ecran5": "B8:27:EB:C0:00:08 " /*string*/,
-      "intermediaire": "B8:27:EB:42:50:89" /*string*/
-    },
     "image 1": {
-      "idEcran": 1 /*int*/,
       "Height": 200 /*int*/,
       "Width": 700 /*int*/,
-      "ratio": 16/9 /*int*/,
       "nbPixel": 1920 /*int*/,
       "posX": 1920 /*int*/,
       "posY": 0 /*int*/,
@@ -30,10 +20,8 @@
   },
 
     "image 2": {
-      "idEcran": 2 /*int*/,
       "Height": 200 /*int*/,
       "Width": 700 /*int*/,
-      "ratio": 4/3 /*float*/,
       "nbPixel": 1920 /*int*/,
       "posX": 1920 /*int*/,
       "posY": 0 /*int*/,
@@ -53,10 +41,8 @@
     /* n x bloc de parametre corespondant au nombre d'écrant "n"  */
 
     "image n": {
-      "idEcran": n /*int*/,
       "Height": 200 /*int*/,
       "Width": 700 /*int*/,
-      "ratio": 16/10 /*float*/,
       "nbPixel": 1920 /*int*/,
       "posX": 1920 /*int*/,
       "posY": 0 /*int*/,
@@ -67,7 +53,7 @@
           "rotation axis":"center" /*string*/ /*center, top, bottom, left, right , top left, top right, bottom left, bottom right, , null*/ /*-->axe de rotation de image */
         } ,
         "translation":{
-          "speed":"medium" /*string*/,/*fast, medium, slow, null*/
+          "speed":"medium" /*string*/,/*fast, medium, slow,1*/
           "direction":"down" /*string*/ /*left, right, up, down, null*/
         }
       }

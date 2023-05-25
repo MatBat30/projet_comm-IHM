@@ -15,7 +15,6 @@ struct parametresImage {
     int posY;
     int heightImage;
     int widthImage;
-    int ratio;
     int numberPixel;
 };
 
@@ -33,8 +32,6 @@ private:
     // Vecteurs pour stocker les paramètres de l'image,adresse IP des raspberry et de l'animation
     vector<int> paramImage;
     vector<string> paramAnimation;
-    vector<string> addresseMacRaspberry;
-    string addresseMacIntermediaire;
 
     // Vecteur pour stocker le message
     vector<char> message;
@@ -52,26 +49,24 @@ private:
 public:
     // Fonction pour récupérer les données à partir d'un fichier
     vector<char> getData(const string& fileName);
-
+    void displayVectors(const std::vector<int>& paramImage, const std::vector<string>& paramAnimation);
     // Fonction pour créer un bloc d'image avec des paramètres spécifiés
     string createImageBlock(int id, const string& posX, const string& posY,
                             const string& heightImage, const string& widthImage,
-                            const string& ratio, const string& numberPixel,
+                            const string& numberPixel,
                             const string& rotationSpeed, const string& rotationDirection,
                             const string& rotationAxis, const string& translationSpeed,
                             const string& translationDirection);
 
     // Fonction pour écrire les données dans un fichier
     void writeData(int numberScreen);
-    void setAddresseIntermediaire(const string& addresseIntermediaire_);
     // Fonction pour définir les données avec des paramètres spécifiés
-    void setData(int id, int posX, int posY, int heightImage, int widthImage, int ratio,
-                 int numberPixel, int widthWall, int heightWall,
+    void setData(int id, int posX, int posY, int heightImage, int widthImage,
+                 int numberPixel, int widthWll, int heightWall,
                  string rotationSpeed_ = "NULL", string rotationDirection_ = "NULL",
                  string rotationAxis_ = "NULL", string translationSpeed_ = "NULL",
                  string translationDirection_ = "NULL");
 
-    void setMacAddress(const string &macAddress_);
 };
 
 #endif //PROJET_COMM_DONNEE_H

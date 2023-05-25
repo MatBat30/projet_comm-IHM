@@ -46,10 +46,10 @@ void comm::sendSize(std::vector<char> nomFichier) {
 
 }
 
-void comm::sendMessage(std::vector<char> contenuImage) {
+void comm::sendMessage(std::vector<char> contenuMessage) {
     // Send a message to the server
     // convert string to const char *
-    int bytesSent = send(clientSocket, contenuImage.data(), contenuImage.size(), 0);
+    int bytesSent = send(clientSocket, contenuMessage.data(), contenuMessage.size(), 0);
     if (bytesSent == SOCKET_ERROR) {
         std::cerr << "Erreur lors de l'envoi de l'image : " << WSAGetLastError() << std::endl;
     } else {
