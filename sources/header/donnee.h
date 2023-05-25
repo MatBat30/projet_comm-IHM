@@ -49,7 +49,6 @@ private:
 public:
     // Fonction pour récupérer les données à partir d'un fichier
     vector<char> getData(const string& fileName);
-    void displayVectors(const std::vector<int>& paramImage, const std::vector<string>& paramAnimation);
     // Fonction pour créer un bloc d'image avec des paramètres spécifiés
     string createImageBlock(int id, const string& posX, const string& posY,
                             const string& heightImage, const string& widthImage,
