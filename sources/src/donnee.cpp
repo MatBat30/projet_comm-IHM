@@ -29,68 +29,21 @@ vector<char> donnee::getData(const std::string &nomFichier) {
     return contenuFichier;
 }
 
-// Fonction pour définir les données à l'aide de paramètres spécifiés
-void donnee::setData(int numberScreen_, int posX_, int posY_, int heightImage_, int WidthImage_, int numberPixel_, int heightWall_, int widthWall_, string rotationSpeed_,
-                     string rotationDirection_, string rotationAxis_, string translationSpeed_,
-                     string translationDirection_) {
-    // Affectation des valeurs aux membres de la structure Image
-    Image.numberPixel = numberPixel_;
-    Image.posX = posX_;
-    Image.posY = posY_;
-    Image.heightImage = heightImage_;
-    Image.widthImage = WidthImage_;
+void donnee::setData(parametresImage inputImgParams, parametresAnimation inputAnimParams ){
+    paramImage.push_back(inputImgParams.numberPixel );
+    paramImage.push_back(inputImgParams.heightImage );
+    paramImage.push_back(inputImgParams.widthImage );
+    paramImage.push_back(inputImgParams.posX );
+    paramImage.push_back(inputImgParams.posY );
 
-    // Affectation des valeurs aux membres de la classe
-    widthWall = widthWall_;
-    heightWall = heightWall_;
-
-
-    // Affectation des valeurs aux membres de la structure animation
-    animation.rotationSpeed = rotationSpeed_;
-    animation.rotationDirection = rotationDirection_;
-    animation.rotationAxis = rotationAxis_;
-    animation.translationSpeed = translationSpeed_;
-    animation.translationDirection = translationDirection_;
-
-    // Construction du nom de la variable pour  obtenir : "image n" avec n pour numero d'ecran
-    std::string nom = "image";
-    std::string numeroecr = std::to_string(numberScreen_);
-    nomVariable = nom.append(numeroecr);
-
-    // Ajout des valeurs aux vecteurs paramImage et paramAnimation
-    paramImage.push_back(Image.numberPixel );
-    paramImage.push_back(Image.heightImage );
-    paramImage.push_back(Image.widthImage );
-    paramImage.push_back(Image.posX );
-    paramImage.push_back(Image.posY );
-
-    paramAnimation.push_back(animation.rotationSpeed );
-    paramAnimation.push_back(animation.rotationDirection );
-    paramAnimation.push_back(animation.rotationAxis );
-    paramAnimation.push_back(animation.translationSpeed );
-    paramAnimation.push_back(animation.translationDirection );
-
-
-    // Affichage des valeurs des vecteurs paramImage et paramAnimation
-    try {
-        std::cout << "paramImage: ";
-        for (const auto& element : paramImage) {
-            std::cout << element << " ";
-        }
-        std::cout << std::endl;
-
-        std::cout << "paramAnimation: ";
-        for (const auto& element : paramAnimation) {
-            std::cout << element << " ";
-        }
-        std::cout << std::endl;
-
-    } catch (const std::out_of_range& e) {
-        std::cout << "Erreur : " << e.what() << std::endl;
-    };
+    paramAnimation.push_back(inputAnimParams.rotationSpeed );
+    paramAnimation.push_back(inputAnimParams.rotationDirection );
+    paramAnimation.push_back(inputAnimParams.rotationAxis );
+    paramAnimation.push_back(inputAnimParams.translationSpeed );
+    paramAnimation.push_back(inputAnimParams.translationDirection );
+    // Copie des structures de données
 
 }
-
 // Fonction qui écrit les données dans un fichier JSON
 void donnee::writeData(int numberScreen) {
     int nombreEcrant = numberScreen ;
@@ -124,7 +77,7 @@ void donnee::writeData(int numberScreen) {
     catch (const std::out_of_range &e) {
         std::cout << "Erreur zone 1 : " << e.what() << std::endl;
     }
-    // Crée et ajoute des blocs d'image pour chaque écran dans le fichier JSON
+    // Crée et ajoute des blocs d'inputImgParams pour chaque écran dans le fichier JSON
 
 
     json_output << std::endl << "  }," << std::endl;
@@ -154,15 +107,15 @@ catch (const std::out_of_range &e) {
     std::cout << "JSON output saved to output.json" << std::endl;
 }
 
-// Fonction qui crée un bloc d'image en format JSON en utilisant les paramètres fournis
+// Fonction qui crée un bloc d'inputImgParams en format JSON en utilisant les paramètres fournis
 std::string donnee::createImageBlock(int n, const std::string& height, const std::string& width,
                                      const std::string& nbPixel, const std::string& posX, const std::string& posY,
                                      const std::string& rotation_speed, const std::string& rotation_direction,
                                      const std::string& rotation_axis, const std::string& translation_speed,
                                      const std::string& translation_direction) {
-    // Crée un flux de sortie pour construire le bloc d'image
+    // Crée un flux de sortie pour construire le bloc d'inputImgParams
     std::ostringstream image_block;
-    image_block << "    \"image " << n << "\": {" << std::endl;
+    image_block << "    \"inputImgParams " << n << "\": {" << std::endl;
     image_block << "      \"Height\": " << height << "," << std::endl;
     image_block << "      \"Width\": " << width << "," << std::endl;
     image_block << "      \"nbPixel\": " << nbPixel << "," << std::endl;
@@ -181,7 +134,7 @@ std::string donnee::createImageBlock(int n, const std::string& height, const std
     image_block << "      }" << std::endl;
     image_block << "    }";
 
-    // Retourne le bloc d'image sous forme de chaîne de caractères
+    // Retourne le bloc d'inputImgParams sous forme de chaîne de caractères
     return image_block.str();
 }
 

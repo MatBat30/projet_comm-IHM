@@ -3,6 +3,7 @@
 #define PROJET_COMM_COMM_H
 
 // Inclusion des bibliothèques nécessaires
+#include "gestion.h"
 #include <iostream>
 #include <WinSock2.h>
 #include <string>
@@ -34,7 +35,7 @@ public:
     void receiveMessage();
 
     // Fonction pour envoyer la taille du fichier (image) au serveur
-    void sendSize(vector<char>);
+    unsigned int sendSize(vector<char>);
 
 private:
     // Variables membres privées

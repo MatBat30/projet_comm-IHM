@@ -1,6 +1,7 @@
 #ifndef PROJET_COMM_DONNEE_H
 #define PROJET_COMM_DONNEE_H
 
+#include "gestion.h"
 #include <stdio.h>
 #include <iostream>
 #include <string>
@@ -9,23 +10,6 @@
 
 using namespace std;
 
-// Structure pour stocker les paramètres de l'image
-struct parametresImage {
-    int posX;
-    int posY;
-    int heightImage;
-    int widthImage;
-    int numberPixel;
-};
-
-// Structure pour stocker les paramètres de l'animation
-struct parametresAnimation {
-    string rotationSpeed;
-    string rotationDirection;
-    string rotationAxis;
-    string translationSpeed;
-    string translationDirection;
-};
 
 class donnee {
 private:
@@ -35,9 +19,7 @@ private:
 
     // Vecteur pour stocker le message
     vector<char> message;
-    // Instances des structures pour stocker les paramètres
-    parametresImage Image{};
-    parametresAnimation animation{};
+
     // Variables pour stocker la largeur et la hauteur du mur
     int widthWall;
     int heightWall;
@@ -60,11 +42,7 @@ public:
     // Fonction pour écrire les données dans un fichier
     void writeData(int numberScreen);
     // Fonction pour définir les données avec des paramètres spécifiés
-    void setData(int id, int posX, int posY, int heightImage, int widthImage,
-                 int numberPixel, int widthWll, int heightWall,
-                 string rotationSpeed_ = "NULL", string rotationDirection_ = "NULL",
-                 string rotationAxis_ = "NULL", string translationSpeed_ = "NULL",
-                 string translationDirection_ = "NULL");
+    void setData(parametresImage inputImgParams, parametresAnimation inputAnimParams);
 
 };
 

@@ -1,43 +1,43 @@
 #include "header/donnee.h"
 #include "header/comm.h"
+#include "header/gestion.h"
 
 #pragma comment(lib, "ws2_32.lib")
 
 int main() {
-    // Création d'objets de communication et de données
-    comm com;
-    donnee data;
-
     // Variables pour stocker les noms de fichiers et leur contenu
-    std::string monImage;
-    std::vector<char> contenuMessage;
 
+    std::string monImage;
+    std::string monFichier;
     // Extensions des fichiers à envoyer
     const char *extensionJson = "jsn";
     const char *extensionJpg = "jpg";
     const char *extensionCpp = "pso";
 
-    // Configuration des données pour les images et animations
-    data.setData(1, 1000, 100, 1080, 1920, 1, 10, 10, "1", "1", "1" , "NULL", "NULL");
-    data.setData(2, 2000, 200, 2080, 2920, 2, 20, 20, "NULL", "NULL", "NULL", "2", "2");
-    // Initialisation de la communication et connexion au serveur
-    //com.init();
-    //com.connectToServer();
+    //create 2 structure de données a copié dans la classe gestion
+    parametresImage image1= {1, 1000, 100, 1080, 1920};
+    parametresAnimation animation1 = {"NULL", "NULL", "NULL", "2", "2"};
 
-    // Écriture des données dans un fichier JSON
-      data.writeData(2);
-//    monImage = "../sources/other/Toto.jpg";
+    monImage = "../sources/other/Toto.jpg";
+    monFichier = "../cmake-build-debug/projet_comm.exe";
 
-    // Récupération du contenu du fichier JSON
-//    contenuMessage = data.getData(monFichier);
+    gestion g(image1, animation1, monImage, monFichier, 2);
+    try {
+        g.run(const_cast<char *>(extensionJson));
+    } catch ( const std::exception &e) {
+        std::cerr <<"error: "<< e.what() << std::endl;
+    }
+    try {
+        g.run(const_cast<char *>(extensionJpg));
+    } catch ( const std::exception &e) {
+        std::cerr <<"error: "<< e.what() << std::endl;
+    }
+    try {
+        g.run(const_cast<char *>(extensionCpp));
+    } catch ( const std::exception &e) {
+        std::cerr <<"error: "<< e.what() << std::endl;
+    }
 
-    // Envoi de la taille du fichier, de l'extension et du contenu du fichier au serveur
-    //com.sendSize(contenuMessage);
-    //com.sendExtension(const_cast<char *>(extensionJpg));
-    //com.sendMessage(contenuMessage);
-
-    // Fermeture de la connexion
-   // com.closeConnection();
 
     return 0;
 }

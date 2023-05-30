@@ -38,8 +38,8 @@ int comm::connectToServer() {
 
 }
 
-void comm::sendSize(std::vector<char> nomFichier) {
-    imageSize = static_cast<int>(nomFichier.size());
+unsigned int comm::sendSize(std::vector<char> monFichier) {
+    imageSize = static_cast<int>(monFichier.size());
     std::cout << "Taille de l'image : " << imageSize <<" octets"<< std::endl;
     send(clientSocket, (const char*)&imageSize, sizeof(imageSize), 0);
     std::cout << "Taille du fichier envoyee : " << imageSize << " octets" << std::endl;
