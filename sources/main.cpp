@@ -1,5 +1,3 @@
-#include "header/donnee.h"
-#include "header/comm.h"
 #include "header/gestion.h"
 
 #pragma comment(lib, "ws2_32.lib")
