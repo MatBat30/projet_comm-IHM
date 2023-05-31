@@ -1,4 +1,4 @@
-#include "../header/comm.h"
+#include "../header/gestion.h"
 
 int  comm::init() {
     WSAData wsaData;
@@ -22,7 +22,7 @@ int  comm::init() {
     serverAddress.sin_family = AF_INET;
     serverAddress.sin_port = htons(8080);
     serverAddress.sin_addr.s_addr = inet_addr("172.16.8.175");
-
+    return 0;
 }
 
 int comm::connectToServer() {
@@ -35,7 +35,7 @@ int comm::connectToServer() {
         return 1;
     }
     std::cout << "Connected to server" << std::endl;
-
+return 0;
 }
 
 unsigned int comm::sendSize(std::vector<char> monFichier) {
@@ -43,7 +43,7 @@ unsigned int comm::sendSize(std::vector<char> monFichier) {
     std::cout << "Taille de l'image : " << imageSize <<" octets"<< std::endl;
     send(clientSocket, (const char*)&imageSize, sizeof(imageSize), 0);
     std::cout << "Taille du fichier envoyee : " << imageSize << " octets" << std::endl;
-
+return imageSize;
 }
 
 void comm::sendMessage(std::vector<char> contenuMessage) {

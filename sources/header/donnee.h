@@ -1,8 +1,8 @@
 #ifndef PROJET_COMM_DONNEE_H
 #define PROJET_COMM_DONNEE_H
 
-#include "gestion.h"
-#include <stdio.h>
+#include "structureDonnee.h"
+
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -10,12 +10,13 @@
 
 using namespace std;
 
-
 class donnee {
 private:
     // Vecteurs pour stocker les paramètres de l'image,adresse IP des raspberry et de l'animation
     vector<int> paramImage;
     vector<string> paramAnimation;
+    vector <parametresAnimation> animationSet;
+    vector <parametresImage> imageSet;
 
     // Vecteur pour stocker le message
     vector<char> message;
@@ -41,9 +42,7 @@ public:
 
     // Fonction pour écrire les données dans un fichier
     void writeData(int numberScreen);
-    // Fonction pour définir les données avec des paramètres spécifiés
-    void setData(parametresImage inputImgParams, parametresAnimation inputAnimParams);
-
+    void setData(vector <parametresImage>, vector <parametresAnimation>, int );
 };
 
 #endif //PROJET_COMM_DONNEE_H

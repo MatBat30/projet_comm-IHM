@@ -1,43 +1,26 @@
 #ifndef PROJET_COMM_GESTION_H
 #define PROJET_COMM_GESTION_H
 
-#include "donnee.h"
+#include "structureDonnee.h"
 #include "comm.h"
-
-// Structure pour stocker les paramètres de l'image
-struct parametresImage {
-    int posX;
-    int posY;
-    int heightImage;
-    int widthImage;
-    int numberPixel;
-};
-
-// Structure pour stocker les paramètres de l'animation
-struct parametresAnimation {
-    string rotationSpeed;
-    string rotationDirection;
-    string rotationAxis;
-    string translationSpeed;
-    string translationDirection;
-};
-
+#include "donnee.h"
 
 class gestion {
 
 private:
-    donnee data;
+    donnee donnees;
     comm com;
-    parametresImage image{};
-    parametresAnimation animation{};
+    vector <parametresImage> image;
+    vector <parametresAnimation> animation;
+
     string filePath;
     string imagePath;
-    int numberSreen;
+    int numberScreen;
 
 public:
-    gestion(parametresImage, parametresAnimation, string, string, int);
-    parametresImage getImage() const;
-    parametresAnimation getAnimation() const;
+    gestion( vector<parametresImage> , vector<parametresAnimation>, string, string, int);
+    vector<parametresImage> getImage() const;
+    vector<parametresAnimation> getAnimation() const;
     void run(char *extension);
 
 };

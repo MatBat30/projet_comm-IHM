@@ -1,17 +1,14 @@
-//
-// Created by m.batailler on 30/05/2023.
-//
-
 #include "../header/gestion.h"
 
-gestion::gestion(parametresImage inputImgParams, parametresAnimation inputAnimParams, string filePath_, string imagePath_
-                , int numberSreen_) {
+gestion::gestion(vector<parametresImage> image_, vector<parametresAnimation> animation_,  string imagePath_, string filePath_, int numberScreen_) {
+
     // Copie des structures de données
-    image  = inputImgParams;
-    animation = inputAnimParams;
+    image  = image_;
+    animation = animation_;
     filePath = filePath_;
     imagePath = imagePath_;
-    numberSreen = numberSreen_;
+    numberScreen = numberScreen_;
+
 
 //    //afficher dans un cout les structure de données pour vérifier
 //    std::cout << "image: " << std::endl;
@@ -30,56 +27,59 @@ gestion::gestion(parametresImage inputImgParams, parametresAnimation inputAnimPa
 
 
 }
-parametresImage gestion::getImage() const {
+
+vector <parametresImage> gestion::getImage() const {
     return image;
 }
 
-parametresAnimation gestion::getAnimation() const {
+vector <parametresAnimation> gestion::getAnimation() const {
     return animation;
 }
 
 void gestion::run(char *extension) {
     std::vector<char> contenuMessage;
-    data.setData(image, animation);
+    donnees.setData(image, animation,numberScreen);
     // Écriture des données dans un fichier JSON
-    data.writeData(numberSreen);
+
+    donnees.writeData(numberScreen);
 
 
 
     if (extension=="jpg") {
-        contenuMessage = data.getData(imagePath);
+        contenuMessage = donnees.getData(imagePath);
         com.init();
         com.connectToServer();
         // Envoi de l'image
         com.sendSize(contenuMessage);
         com.sendExtension(const_cast<char *>(extension));
-        com.sendMessage(contenuMessage);
-    }
-    else if(extension=="pso") {
-        contenuMessage = data.getData(filePath);
-        com.init();
-        com.connectToServer();
-        // Envoi de l'image
-        com.sendSize(contenuMessage);
-        com.sendExtension(const_cast<char *>(extension));
-        com.sendMessage(contenuMessage);
-    }
-    else if (extension=="jsn") {
-        contenuMessage = data.getData(filePath);
-        com.init();
-        com.connectToServer();
-        // Envoi de l'image
-        com.sendSize(contenuMessage);
-        com.sendExtension(const_cast<char *>(extension));
+        //j'ai un gros zgueg
         com.sendMessage(contenuMessage);
         // Fermeture de la connexion
         com.closeConnection();
     }
+//    else if(extension=="pso") {
+//        contenuMessage = donnees.getData(filePath);
+//        com.init();
+//        com.connectToServer();
+//        // Envoi de l'image
+//        com.sendSize(contenuMessage);
+//        com.sendExtension(const_cast<char *>(extension));
+//        com.sendMessage(contenuMessage);
+//        // Fermeture de la connexion
+//        com.closeConnection();
+//    }
+//    else if (extension=="jsn") {
+//
+//        com.init();
+//        com.connectToServer();
+//        // Envoi de l'image
+//        com.sendSize(contenuMessage);
+//        com.sendExtension(const_cast<char *>(extension));
+//        com.sendMessage(contenuMessage);
+//        // Fermeture de la connexion
+//        com.closeConnection();
+//    }
     else {
         std::cout << "Erreur: extension non reconnue" << std::endl;
     }
-
-
-
-
 }
