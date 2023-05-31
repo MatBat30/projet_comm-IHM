@@ -43,8 +43,6 @@ void gestion::run(char *extension) {
 
     donnees.writeData(numberScreen);
 
-
-
     if (extension=="jpg") {
         contenuMessage = donnees.getData(imagePath);
         com.init();
