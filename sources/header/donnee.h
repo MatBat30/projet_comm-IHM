@@ -32,17 +32,12 @@ private:
 public:
     // Fonction pour récupérer les données à partir d'un fichier
     vector<char> getData(const string& fileName);
-    // Fonction pour créer un bloc d'image avec des paramètres spécifiés
-    string createImageBlock(int id, const string& posX, const string& posY,
-                            const string& heightImage, const string& widthImage,
-                            const string& numberPixel,
-                            const string& rotationSpeed, const string& rotationDirection,
-                            const string& rotationAxis, const string& translationSpeed,
-                            const string& translationDirection);
 
     // Fonction pour écrire les données dans un fichier
     void writeData(int numberScreen);
-    void setData(vector <parametresImage>, vector <parametresAnimation>, int );
+
+    void setData(vector <parametresImage>, vector <parametresAnimation>);
+
 };
 
 #endif //PROJET_COMM_DONNEE_H

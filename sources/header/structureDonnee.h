@@ -2,6 +2,7 @@
 #define PROJET_COMM_STRUCTUREDONNEE_H
 
 #include <string>
+#include <vector>
 using namespace std;
 
 struct parametresImage {
@@ -19,5 +20,12 @@ struct parametresAnimation {
     string rotationAxis;
     string translationSpeed;
     string translationDirection;
+};
+
+struct dictionary{
+   string exectutable;
+   string name;
+   string type;
+   vector <string> newParam = {};
 };
 #endif //PROJET_COMM_STRUCTUREDONNEE_H

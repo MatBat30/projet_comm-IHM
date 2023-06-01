@@ -24,8 +24,6 @@ gestion::gestion(vector<parametresImage> image_, vector<parametresAnimation> ani
 //    std::cout << "translationSpeed: " << animation.translationSpeed << " ";
 //    std::cout << "translationDirection: " << animation.translationDirection << " ";
 //    std::cout << std::endl;
-
-
 }
 
 vector <parametresImage> gestion::getImage() const {
@@ -36,47 +34,59 @@ vector <parametresAnimation> gestion::getAnimation() const {
     return animation;
 }
 
-void gestion::run(char *extension) {
+void gestion::run(char *extension_) {
+    cout << "run " << "extention : "<< extension_ << endl;
     std::vector<char> contenuMessage;
-    donnees.setData(image, animation,numberScreen);
+    extension = extension_;
+    donnees.setData(image, animation);
     // Écriture des données dans un fichier JSON
 
     donnees.writeData(numberScreen);
 
-    if (extension=="jpg") {
-        contenuMessage = donnees.getData(imagePath);
-        com.init();
-        com.connectToServer();
-        // Envoi de l'image
-        com.sendSize(contenuMessage);
-        com.sendExtension(const_cast<char *>(extension));
-        //j'ai un gros zgueg
-        com.sendMessage(contenuMessage);
-        // Fermeture de la connexion
-        com.closeConnection();
+    if (strcmp(extension, "jsn") == 0) {
+//        contenuMessage = donnees.getData(imagePath);
+//        com.init();
+//        com.connectToServer();
+//        // Envoi de l'image
+//        // com.sendSize(contenuMessage);
+//        com.sendExtension(const_cast<char *>(extension));
+//        // Envoi de l'extension
+//        com.sendMessage(contenuMessage);
+//        // Fermeture de la connexion
+//        com.closeConnection();
     }
-//    else if(extension=="pso") {
+    else if(strcmp(extension, "jpg") == 0) {
 //        contenuMessage = donnees.getData(filePath);
 //        com.init();
 //        com.connectToServer();
 //        // Envoi de l'image
-//        com.sendSize(contenuMessage);
+//        //com.sendSize(contenuMessage);
 //        com.sendExtension(const_cast<char *>(extension));
 //        com.sendMessage(contenuMessage);
 //        // Fermeture de la connexion
 //        com.closeConnection();
-//    }
-//    else if (extension=="jsn") {
-//
+        try {
+            gestion::run("jsn");
+        } catch ( const std::exception &e) {
+            std::cerr <<"error: "<< e.what() << std::endl;
+        }
+    }
+    else if (strcmp(extension, "exe") == 0) {
+
 //        com.init();
 //        com.connectToServer();
 //        // Envoi de l'image
-//        com.sendSize(contenuMessage);
+//        // com.sendSize(contenuMessage);
 //        com.sendExtension(const_cast<char *>(extension));
 //        com.sendMessage(contenuMessage);
 //        // Fermeture de la connexion
 //        com.closeConnection();
-//    }
+        try {
+            gestion::run("jsn" );
+        } catch ( const std::exception &e) {
+            std::cerr <<"error: "<< e.what() << std::endl;
+        }
+    }
     else {
         std::cout << "Erreur: extension non reconnue" << std::endl;
     }

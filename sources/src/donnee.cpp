@@ -29,7 +29,7 @@ vector<char> donnee::getData(const std::string &nomFichier) {
     return contenuFichier;
 }
 
-void donnee::setData(vector <parametresImage> inputImgParams, vector <parametresAnimation> inputAnimParams, int numberScreen_ ){
+void donnee::setData(const vector <parametresImage> inputImgParams,const vector <parametresAnimation> inputAnimParams){
 
     imageSet = inputImgParams;
     animationSet = inputAnimParams;
@@ -37,18 +37,18 @@ void donnee::setData(vector <parametresImage> inputImgParams, vector <parametres
 }
 
 void donnee::writeData(int numberOfScreens) {
-    cout << "nombre d'ecrant: " << numberOfScreens<< endl;
-    cout<< "imageSet.size(): " << imageSet.size() << endl;
-    cout<< "animationSet.size(): " << animationSet.size() << endl;
+
     using json = nlohmann::json;
-
     json jsonData;
-
     json setting;
-    int j = 0;
-    for (int i = 1; i <= numberOfScreens; i++) {
 
-        cout << "j: " << j << endl;
+//  cout << "nombre d'ecrant: " << numberOfScreens<< endl;
+//  cout<< "imageSet.size(): " << imageSet.size() << endl;
+//  cout<< "animationSet.size(): " << animationSet.size() << endl;
+//  int j = 0;
+//  for (int i = 1; i <= numberOfScreens; i++) {
+//  cout << "j: " << j << endl;
+
         json image;
         image["Height"] = imageSet.at(j).heightImage;
         image["Width"] = imageSet.at(j).widthImage;

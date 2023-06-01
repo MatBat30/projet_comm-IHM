@@ -15,13 +15,14 @@ private:
 
     string filePath;
     string imagePath;
+    const char * extension;
     int numberScreen;
 
 public:
     gestion( vector<parametresImage> , vector<parametresAnimation>, string, string, int);
     vector<parametresImage> getImage() const;
     vector<parametresAnimation> getAnimation() const;
-    void run(char *extension);
+    void run(char * extension);
 
 };
 
