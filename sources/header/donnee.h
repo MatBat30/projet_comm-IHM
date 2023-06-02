@@ -15,8 +15,11 @@ private:
     // Vecteurs pour stocker les paramètres de l'image,adresse IP des raspberry et de l'animation
     vector<int> paramImage;
     vector<string> paramAnimation;
-    vector <parametresAnimation> animationSet;
+    vector<string> paramDictionnaire;
+
     vector <parametresImage> imageSet;
+    vector <parametresAnimation> animationSet;
+    vector <parametresDictionaire> dictionarySet;
 
     // Vecteur pour stocker le message
     vector<char> message;
@@ -36,8 +39,9 @@ public:
     // Fonction pour écrire les données dans un fichier
     void writeData(int numberScreen);
 
-    void setData(vector <parametresImage>, vector <parametresAnimation>);
+    void setData(vector <parametresImage>, vector <parametresAnimation>, vector <parametresDictionaire>);
 
+    static string getFileExtension(const string &filePath);
 };
 
 #endif //PROJET_COMM_DONNEE_H

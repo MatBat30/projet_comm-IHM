@@ -29,11 +29,10 @@ vector<char> donnee::getData(const std::string &nomFichier) {
     return contenuFichier;
 }
 
-void donnee::setData(const vector <parametresImage> inputImgParams,const vector <parametresAnimation> inputAnimParams){
-
+void donnee::setData(const vector <parametresImage> inputImgParams,const vector <parametresAnimation> inputAnimParams, const vector <parametresDictionaire> inputDictParams){
     imageSet = inputImgParams;
     animationSet = inputAnimParams;
-
+    dictionarySet = inputDictParams;
 }
 
 void donnee::writeData(int numberOfScreens) {
@@ -45,52 +44,90 @@ void donnee::writeData(int numberOfScreens) {
 //  cout << "nombre d'ecrant: " << numberOfScreens<< endl;
 //  cout<< "imageSet.size(): " << imageSet.size() << endl;
 //  cout<< "animationSet.size(): " << animationSet.size() << endl;
-//  int j = 0;
-//  for (int i = 1; i <= numberOfScreens; i++) {
+  int j = 0;
+  for (int i = 1; i <= numberOfScreens; i++) {
 //  cout << "j: " << j << endl;
-
+        j = i - 1;
         json image;
         image["Height"] = imageSet.at(j).heightImage;
         image["Width"] = imageSet.at(j).widthImage;
         image["nbPixel"] = imageSet.at(j).numberPixel;
         image["posX"] = imageSet.at(j).posX;
         image["posY"] = imageSet.at(j).posY;
+        image["timeStart"] = imageSet.at(j).timeStart;
+        image["timeEnd"] = imageSet.at(j).timeEnd;
 
         json animation;
-        animation["rotation"]["speed"] = animationSet.at(j).rotationSpeed;
-        animation["rotation"]["direction"] = animationSet.at(j).rotationDirection;
-        animation["rotation"]["rotation axis"] = animationSet.at(j).rotationAxis;
-        animation["translation"]["speed"] = animationSet.at(j).translationSpeed;
-        animation["translation"]["direction"] = animationSet.at(j).translationDirection;
+
+        if (animationSet.at(j).rotationSpeed != "NULL") {
+            animation["rotation"]["speed"] = animationSet.at(j).rotationSpeed;
+            animation["rotation"]["direction"] = animationSet.at(j).rotationDirection;
+            animation["rotation"]["rotation axis"] = animationSet.at(j).rotationAxis;
+        }
+
+        if (animationSet.at(j).translationSpeed != "NULL") {
+            animation["translation"]["speed"] = animationSet.at(j).translationSpeed;
+            animation["translation"]["direction"] = animationSet.at(j).translationDirection;
+
+        }
 
         image["animation"] = animation;
 
         setting["image " + std::to_string(i)] = image;
-        j++;
+
     }
 
     jsonData["setting"] = setting;
 
     json dictionary;
-    dictionary["name"] = "translation";
-    dictionary["type"] = ".exe";
-    dictionary["executable"] = "translationCode";
+
+    dictionary["name"] = dictionarySet.at(1).name;
+    dictionary["type"] = dictionarySet.at(1).type;
+    dictionary["executable"] = dictionarySet.at(1).exectutable;
 
     json param;
-    param["number"] = 4;
-    param["parm1"] = "newParam1";
-    param["parm2"] = "newParam2";
-    param["parm3"] = "newParam3";
-    param["parm4"] = "newParam4";
+    param["number"] = dictionarySet.at(1).numberParam;
+    string str;
+    int x = 0;
+    for (int i = 0; i <= dictionarySet.at(1).numberParam; ++i) {
+        x= i;
+        str = "parm" + std::to_string(i+1);
+        param[str] = dictionarySet.at(x).numberParam;
+    }
 
     dictionary["param"] = param;
 
     jsonData["dictionary"] = dictionary;
-
-    std::ofstream outputFile("output.json");
-    outputFile << std::setw(4) << jsonData << std::endl;
-    outputFile.close();
-
+    try {
+        std::ofstream outputFile("output.json");
+        outputFile << std::setw(4) << jsonData << std::endl;
+        outputFile.close();
+    } catch ( std::exception &e) {
+        std::cout << "Error: " << e.what() << std::endl;
+    }
     std::cout << "JSON output saved to output.json" << std::endl;
 }
 
+std::string donnee::getFileExtension(const std::string& filePath) {
+    // Trouver la position du dernier point dans le chemin du fichier
+    size_t dotPos = filePath.find_last_of(".");
+
+    if (dotPos != std::string::npos) {
+        // Extraire l'extension à partir de la position du dernier point
+        std::string extension = filePath.substr(dotPos + 1);
+
+        if (extension == "json") {
+            return extension= "jsn";
+        }
+        else if  (extension == "jpg") {
+            return extension= "jpg";
+        }
+        else if  (extension == "cpp") {
+            return extension= "cpp";
+        }
+        else {
+            std::cout << "L'extension n'est pas reconnue" << std::endl;
+        }
+    }
+    return "";
+}

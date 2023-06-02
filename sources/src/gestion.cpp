@@ -1,10 +1,11 @@
 #include "../header/gestion.h"
 
-gestion::gestion(vector<parametresImage> image_, vector<parametresAnimation> animation_,  string imagePath_, string filePath_, int numberScreen_) {
+gestion::gestion(vector<parametresImage> image_, vector<parametresAnimation> animation_, vector <parametresDictionaire> dictonary_ , string imagePath_, string filePath_, int numberScreen_) {
 
     // Copie des structures de données
     image  = image_;
     animation = animation_;
+    dictionnaire = dictonary_;
     filePath = filePath_;
     imagePath = imagePath_;
     numberScreen = numberScreen_;
@@ -33,54 +34,57 @@ vector <parametresImage> gestion::getImage() const {
 vector <parametresAnimation> gestion::getAnimation() const {
     return animation;
 }
+vector <parametresDictionaire> gestion::getDictionaire() const {
+    return dictionnaire;
+}
 
-void gestion::run(char *extension_) {
-    cout << "run " << "extention : "<< extension_ << endl;
+void gestion::run(string filePath) {
+    cout << "run extention : "<< donnee::getFileExtension(filePath) << endl;
+
     std::vector<char> contenuMessage;
-    extension = extension_;
-    donnees.setData(image, animation);
+
+    extension = donnee::getFileExtension(filePath).c_str();
+
+    donnees.setData(image, animation, dictionnaire);
+
     // Écriture des données dans un fichier JSON
 
     donnees.writeData(numberScreen);
 
     if (strcmp(extension, "jsn") == 0) {
-//        contenuMessage = donnees.getData(imagePath);
-//        com.init();
-//        com.connectToServer();
-//        // Envoi de l'image
-//        // com.sendSize(contenuMessage);
-//        com.sendExtension(const_cast<char *>(extension));
-//        // Envoi de l'extension
-//        com.sendMessage(contenuMessage);
-//        // Fermeture de la connexion
-//        com.closeConnection();
+        contenuMessage = donnees.getData(imagePath);
+        com.init();
+        com.connectToServer();
+        //Envoi de l'image
+        com.sendExtension(const_cast<char *>(extension));
+        //Envoi de l'extension
+        com.sendMessage(contenuMessage);
+        //Fermeture de la connexion
+        com.closeConnection();
     }
     else if(strcmp(extension, "jpg") == 0) {
-//        contenuMessage = donnees.getData(filePath);
-//        com.init();
-//        com.connectToServer();
-//        // Envoi de l'image
-//        //com.sendSize(contenuMessage);
-//        com.sendExtension(const_cast<char *>(extension));
-//        com.sendMessage(contenuMessage);
-//        // Fermeture de la connexion
-//        com.closeConnection();
+        contenuMessage = donnees.getData(filePath);
+        com.init();
+        com.connectToServer();
+        // Envoi de l'image
+        com.sendExtension(const_cast<char *>(extension));
+        com.sendMessage(contenuMessage);
+        // Fermeture de la connexion
+        com.closeConnection();
         try {
             gestion::run("jsn");
         } catch ( const std::exception &e) {
             std::cerr <<"error: "<< e.what() << std::endl;
         }
     }
-    else if (strcmp(extension, "exe") == 0) {
-
-//        com.init();
-//        com.connectToServer();
-//        // Envoi de l'image
-//        // com.sendSize(contenuMessage);
-//        com.sendExtension(const_cast<char *>(extension));
-//        com.sendMessage(contenuMessage);
-//        // Fermeture de la connexion
-//        com.closeConnection();
+    else if (strcmp(extension, "cpp") == 0) {
+        com.init();
+        com.connectToServer();
+        // Envoi de l'image
+        com.sendExtension(const_cast<char *>(extension));
+        com.sendMessage(contenuMessage);
+        // Fermeture de la connexion
+        com.closeConnection();
         try {
             gestion::run("jsn" );
         } catch ( const std::exception &e) {

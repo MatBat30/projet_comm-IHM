@@ -12,6 +12,7 @@ private:
     comm com;
     vector <parametresImage> image;
     vector <parametresAnimation> animation;
+    vector <parametresDictionaire> dictionnaire;
 
     string filePath;
     string imagePath;
@@ -19,10 +20,11 @@ private:
     int numberScreen;
 
 public:
-    gestion( vector<parametresImage> , vector<parametresAnimation>, string, string, int);
+    gestion( vector<parametresImage>, vector<parametresAnimation>, vector <parametresDictionaire>, string, string, int);
     vector<parametresImage> getImage() const;
     vector<parametresAnimation> getAnimation() const;
-    void run(char * extension);
+    vector<parametresDictionaire> getDictionaire() const;
+    void run(string extension_);
 
 };
 

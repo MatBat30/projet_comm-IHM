@@ -11,6 +11,8 @@ struct parametresImage {
     int heightImage;
     int widthImage;
     int numberPixel;
+    string timeStart;
+    string timeEnd;
 };
 
 // Structure pour stocker les paramètres de l'animation
@@ -22,10 +24,11 @@ struct parametresAnimation {
     string translationDirection;
 };
 
-struct dictionary{
+struct parametresDictionaire{
    string exectutable;
    string name;
    string type;
-   vector <string> newParam = {};
+   int numberParam;
+   vector <string> prametresNewAnimation ;
 };
 #endif //PROJET_COMM_STRUCTUREDONNEE_H
