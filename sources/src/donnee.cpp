@@ -29,7 +29,8 @@ vector<char> donnee::getData(const std::string &nomFichier) {
     return contenuFichier;
 }
 
-void donnee::setData(const vector <parametresImage> inputImgParams,const vector <parametresAnimation> inputAnimParams, const vector <parametresDictionaire> inputDictParams){
+void donnee::setData(const vector<parametresImage> inputImgParams, const vector<parametresAnimation> inputAnimParams,
+                     const parametresDictionaire inputDictParams) {
     imageSet = inputImgParams;
     animationSet = inputAnimParams;
     dictionarySet = inputDictParams;
@@ -41,17 +42,13 @@ void donnee::writeData(int numberOfScreens) {
     json jsonData;
     json setting;
 
-//  cout << "nombre d'ecrant: " << numberOfScreens<< endl;
-//  cout<< "imageSet.size(): " << imageSet.size() << endl;
-//  cout<< "animationSet.size(): " << animationSet.size() << endl;
-  int j = 0;
-  for (int i = 1; i <= numberOfScreens; i++) {
+    int j = 0;
+    for (int i = 1; i <= numberOfScreens; i++) {
 //  cout << "j: " << j << endl;
         j = i - 1;
         json image;
         image["Height"] = imageSet.at(j).heightImage;
         image["Width"] = imageSet.at(j).widthImage;
-        image["nbPixel"] = imageSet.at(j).numberPixel;
         image["posX"] = imageSet.at(j).posX;
         image["posY"] = imageSet.at(j).posY;
         image["timeStart"] = imageSet.at(j).timeStart;
@@ -81,18 +78,20 @@ void donnee::writeData(int numberOfScreens) {
 
     json dictionary;
 
-    dictionary["name"] = dictionarySet.at(1).name;
-    dictionary["type"] = dictionarySet.at(1).type;
-    dictionary["executable"] = dictionarySet.at(1).exectutable;
+    dictionary["name"] = dictionarySet.name;
+    dictionary["type"] = dictionarySet.type;
+    dictionary["executable"] = dictionarySet.exectutable;
 
     json param;
-    param["number"] = dictionarySet.at(1).numberParam;
+    param["number"] = dictionarySet.numberParam;
     string str;
-    int x = 0;
-    for (int i = 0; i <= dictionarySet.at(1).numberParam; ++i) {
-        x= i;
-        str = "parm" + std::to_string(i+1);
-        param[str] = dictionarySet.at(x).numberParam;
+//    int x = 0;
+
+    for (int i = 0; i < dictionarySet.numberParam; ++i) {
+//        x++;
+        str = "parm" + std::to_string(i + 1);
+        param[str] = dictionarySet.prametresNewAnimation.at(i);
+
     }
 
     dictionary["param"] = param;
@@ -102,32 +101,38 @@ void donnee::writeData(int numberOfScreens) {
         std::ofstream outputFile("output.json");
         outputFile << std::setw(4) << jsonData << std::endl;
         outputFile.close();
-    } catch ( std::exception &e) {
-        std::cout << "Error: " << e.what() << std::endl;
+    } catch (std::exception &e) {
+        std::cout << "Error at writeData(): " << e.what() << std::endl;
     }
     std::cout << "JSON output saved to output.json" << std::endl;
 }
 
-std::string donnee::getFileExtension(const std::string& filePath) {
+std::string donnee::getFileExtension(const std::string &filePath) {
     // Trouver la position du dernier point dans le chemin du fichier
     size_t dotPos = filePath.find_last_of(".");
-
+    cout << "file path at getFileExtension() state : " << filePath << endl;
     if (dotPos != std::string::npos) {
         // Extraire l'extension à partir de la position du dernier point
         std::string extension = filePath.substr(dotPos + 1);
+        cout << "enxtension " << extension << endl;
 
         if (extension == "json") {
-            return extension= "jsn";
-        }
-        else if  (extension == "jpg") {
-            return extension= "jpg";
-        }
-        else if  (extension == "cpp") {
-            return extension= "cpp";
-        }
-        else {
+            return extension = "jsn";
+        } else if (extension == "jpg") {
+            return extension = "jpg";
+        } else if (extension == "cpp") {
+            return extension = "exe";
+        } else {
             std::cout << "L'extension n'est pas reconnue" << std::endl;
         }
     }
     return "";
+}
+
+vector<char> donnee::getJsonData() {
+    vector<char> contenuJson = getData("output.json");
+    std::string str(contenuJson.begin(), contenuJson.end());
+    cout << "contenuJson: " << endl;
+    cout << str << endl;
+    return contenuJson;
 }

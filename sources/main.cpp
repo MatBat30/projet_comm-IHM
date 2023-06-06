@@ -9,57 +9,56 @@ int main() {
     std::string monImage;
     std::string monFichier;
     int numberScreen = 4;
-    // Extensions des fichiers à envoyer
-    char *extensionJson = "jsn";
-    char *extensionJpg = "jpg";
-    char *extensionExe = "cpp";
-
     std::vector<parametresImage> image = {};
     std::vector<parametresAnimation> animation = {};
-    std::vector<parametresDictionaire> dictionnaire = {};
+//    std::vector<parametresDictionaire> dictionnaire = {};
 
     //create 2 structure de données a copié dans la classe gestion
-    parametresImage image1= {01, 1000, 100, 1080, 1920, "2023-06-02 15:27", "2023-06-02 15:32"};
+    parametresImage image1 = {01, 1000, 100, 1080, "2023-06-02 15:27", "2023-06-02 15:32"};
     parametresAnimation animation1 = {"NULL", "NULL", "NULL", "1", "1"};
     image.push_back(image1);
     animation.push_back(animation1);
 
-    parametresImage image2= {02, 2000, 200, 2080, 2920, "2023-06-02 15:27", "2023-06-02 15:32"};
+    parametresImage image2 = {02, 2000, 200, 2080, "2023-06-02 15:27", "2023-06-02 15:32"};
     parametresAnimation animation2 = {"2", "2", "2", "NULL", "NULL"};
     image.push_back(image2);
     animation.push_back(animation2);
 
-    parametresImage image3 = { 3, 3000, 300, 3080, 3920, "2023-06-02 15:27", "2023-06-02 15:32"};
-    parametresAnimation animation3 = { "3", "3", "3", "3", "3" };
+    parametresImage image3 = {3, 3000, 300, 3080, "2023-06-02 15:27", "2023-06-02 15:32"};
+    parametresAnimation animation3 = {"3", "3", "3", "3", "3"};
     image.push_back(image3);
     animation.push_back(animation3);
 
-    parametresImage image4 = { 4, 4000, 400, 4080, 4920,"2023-06-02 15:27", "2023-06-02 15:32" };
-    parametresAnimation animation4 = { "NULL", "NULL", "NULL", "4", "4" };
+    parametresImage image4 = {4, 4000, 400, 4080, "2023-06-02 15:27", "2023-06-02 15:32"};
+    parametresAnimation animation4 = {"NULL", "NULL", "NULL", "4", "4"};
     image.push_back(image4);
     animation.push_back(animation4);
 
-     vector<string> param= {"int", "string", "float", "double", "char", "char *"};
+    vector<string> param = {"int", "string", "float", "double", "char", "char *"};
 
-     parametresDictionaire dico = {"NULL", "NULL", "NULL", static_cast<int>(size(param)), param};
-     dictionnaire.push_back(dico);
+    parametresDictionaire dictionnaire = {"NULL", "NULL", "NULL", static_cast<int>(size(param)), param};
+//     dictionnaire.push_back(dico);
 
-    monImage ="../other/Toto.jpg";
-    monFichier = "../cmake-build-debug/projet_comm.exe";
+    monImage = "../other/Toto.jpg";
+    monFichier = "../other/rotation.cpp";
 
-    gestion g(image, animation, dictionnaire,  monImage, monFichier, numberScreen);
+    gestion g(image, animation, dictionnaire, monImage, monFichier, numberScreen);
 
     try {
+        cout << "------------debut premier run------------" << endl;
         g.run(monImage);
-    } catch ( const std::exception &e) {
-        std::cerr <<"error: "<< e.what() << std::endl;
-    }
-    try {
-        g.run(monFichier);
-    } catch ( const std::exception &e) {
-        std::cerr <<"error: "<< e.what() << std::endl;
+        cout << "------------fin premier run------------" << endl;
+    } catch (const std::exception &e) {
+        std::cerr << "error: run 1 " << e.what() << std::endl;
     }
 
-//yamete kudasai senpai !!!!! >.< (づ｡◕‿‿◕｡)づ
+    try {
+        cout << "------------debut second run------------" << endl;
+        g.run(monFichier);
+        cout << "------------fin second run------------" << endl;
+    } catch (const std::exception &e) {
+        std::cerr << "error: run 2 " << e.what() << std::endl;
+    }
+//(づ｡◕‿‿◕｡)づ
     return 0;
 }

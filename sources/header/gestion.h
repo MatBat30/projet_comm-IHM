@@ -10,20 +10,25 @@ class gestion {
 private:
     donnee donnees;
     comm com;
-    vector <parametresImage> image;
-    vector <parametresAnimation> animation;
-    vector <parametresDictionaire> dictionnaire;
+    vector<parametresImage> image;
+    vector<parametresAnimation> animation;
+    parametresDictionaire dictionnaire;
 
     string filePath;
     string imagePath;
-    const char * extension;
+    const char *extension;
     int numberScreen;
 
 public:
-    gestion( vector<parametresImage>, vector<parametresAnimation>, vector <parametresDictionaire>, string, string, int);
+    gestion(vector<parametresImage>, vector<parametresAnimation>, parametresDictionaire dictionnaire, string, string,
+            int);
+
     vector<parametresImage> getImage() const;
+
     vector<parametresAnimation> getAnimation() const;
-    vector<parametresDictionaire> getDictionaire() const;
+
+    parametresDictionaire getDictionaire() const;
+
     void run(string extension_);
 
 };

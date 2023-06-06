@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+
 using namespace std;
 
 struct parametresImage {
@@ -10,7 +11,6 @@ struct parametresImage {
     int posY;
     int heightImage;
     int widthImage;
-    int numberPixel;
     string timeStart;
     string timeEnd;
 };
@@ -24,11 +24,11 @@ struct parametresAnimation {
     string translationDirection;
 };
 
-struct parametresDictionaire{
-   string exectutable;
-   string name;
-   string type;
-   int numberParam;
-   vector <string> prametresNewAnimation ;
+struct parametresDictionaire {
+    string exectutable;
+    string name;
+    string type;
+    int numberParam;
+    vector<string> prametresNewAnimation;
 };
 #endif //PROJET_COMM_STRUCTUREDONNEE_H

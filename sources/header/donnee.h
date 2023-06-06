@@ -2,6 +2,7 @@
 #define PROJET_COMM_DONNEE_H
 
 #include "structureDonnee.h"
+#include "json.hpp"
 
 #include <iostream>
 #include <string>
@@ -12,14 +13,13 @@ using namespace std;
 
 class donnee {
 private:
-    // Vecteurs pour stocker les paramètres de l'image,adresse IP des raspberry et de l'animation
     vector<int> paramImage;
     vector<string> paramAnimation;
-    vector<string> paramDictionnaire;
+    parametresDictionaire paramDictionnaire;
 
-    vector <parametresImage> imageSet;
-    vector <parametresAnimation> animationSet;
-    vector <parametresDictionaire> dictionarySet;
+    vector<parametresImage> imageSet;
+    vector<parametresAnimation> animationSet;
+    parametresDictionaire dictionarySet;
 
     // Vecteur pour stocker le message
     vector<char> message;
@@ -34,14 +34,16 @@ private:
 
 public:
     // Fonction pour récupérer les données à partir d'un fichier
-    vector<char> getData(const string& fileName);
+    vector<char> getData(const string &fileName);
 
     // Fonction pour écrire les données dans un fichier
     void writeData(int numberScreen);
 
-    void setData(vector <parametresImage>, vector <parametresAnimation>, vector <parametresDictionaire>);
+    void setData(vector<parametresImage>, vector<parametresAnimation>, parametresDictionaire);
 
     static string getFileExtension(const string &filePath);
+
+    vector<char> getJsonData();
 };
 
 #endif //PROJET_COMM_DONNEE_H

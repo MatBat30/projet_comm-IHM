@@ -1,6 +1,6 @@
 #include "../header/gestion.h"
 
-int  comm::init() {
+int comm::init() {
     WSAData wsaData;
     // Initialise Winsock
 
@@ -10,7 +10,7 @@ int  comm::init() {
         return 1;
     }
     // Creation du socket
-     clientSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+    clientSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if (clientSocket == INVALID_SOCKET) {
         std::cerr << "Socket creation failed with error: " << WSAGetLastError() << std::endl;
         WSACleanup();
@@ -27,7 +27,7 @@ int  comm::init() {
 
 int comm::connectToServer() {
     // Connect to the server
-    int result = connect(clientSocket, (struct sockaddr *)&serverAddress, sizeof(serverAddress));
+    int result = connect(clientSocket, (struct sockaddr *) &serverAddress, sizeof(serverAddress));
     if (result == SOCKET_ERROR) {
         std::cerr << "Connection failed with error: " << WSAGetLastError() << std::endl;
         closesocket(clientSocket);
@@ -35,15 +35,15 @@ int comm::connectToServer() {
         return 1;
     }
     std::cout << "Connected to server" << std::endl;
-return 0;
+    return 0;
 }
 
 unsigned int comm::sendSize(std::vector<char> monFichier) {
     imageSize = static_cast<int>(monFichier.size());
-    std::cout << "Taille de l'image : " << imageSize <<" octets"<< std::endl;
-    send(clientSocket, (const char*)&imageSize, sizeof(imageSize), 0);
+    std::cout << "Taille de l'image : " << imageSize << " octets" << std::endl;
+    send(clientSocket, (const char *) &imageSize, sizeof(imageSize), 0);
     std::cout << "Taille du fichier envoyee : " << imageSize << " octets" << std::endl;
-return imageSize;
+    return imageSize;
 }
 
 void comm::sendMessage(std::vector<char> contenuMessage) {
@@ -57,10 +57,10 @@ void comm::sendMessage(std::vector<char> contenuMessage) {
     }
 }
 
-void comm::sendExtension(char* extension) {
-    std::cout << "Taille de l'extention : " << strlen(extension) <<" octets"<< std::endl;
+void comm::sendExtension(char *extension) {
+    std::cout << "Taille de l'extention : " << strlen(extension) << " octets" << std::endl;
     int bytesSent = send(clientSocket, extension, strlen(extension), 0);
-std::cout << "Taille de l'envoie : " << bytesSent <<" octets"<< std::endl;
+    std::cout << "Taille de l'envoie : " << bytesSent << " octets" << std::endl;
     if (bytesSent < 0) {
         std::cerr << "Erreur lors de l'envoi de l'extention : " << WSAGetLastError() << std::endl;
     } else {
