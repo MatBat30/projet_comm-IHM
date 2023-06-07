@@ -55,65 +55,64 @@ parametresDictionaire gestion::getDictionaire() const {
     return dictionnaire;
 }
 
-void gestion::run(string filePath) {
-
-
+void gestion::run(string filePath_) {
     std::vector<char> contenuMessage;
+    string jsonPath = "../cmake-build-debug/output.json";
 
-    extension  = donnee::getFileExtension(filePath).c_str();
+    string extension  = donnee::getFileExtension(filePath_).c_str();
+    char *cstr = new char[extension.length() + 1];
+    std::strcpy(cstr, extension.c_str());
+    cout << "extension at run() : " << extension << endl;
+    donnees.setData(image, animation, dictionnaire);
+    donnees.writeData(numberScreen);
 #ifdef test
     cout << "run() avec l'extention : " << extension << endl;
     cout << "filePath at run() state : " << filePath << endl;
 #endif
-    donnees.setData(image, animation, dictionnaire);
-
-    // Écriture des données dans un fichier JSON
-
-    donnees.writeData(numberScreen);
-
-    if (strcmp(extension, "jsn") == 0) {
+    if (extension == "jsn") {
+        cout << "we are in run jpg"<< endl;
         contenuMessage = donnees.getJsonData();
         com.init();
         com.connectToServer();
         //Envoi de l'image
-        com.sendExtension(const_cast<char *>(extension));
+        com.sendExtension(cstr);
         //Envoi de l'extension
         com.sendMessage(contenuMessage);
         //Fermeture de la connexion
         com.closeConnection();
-    } else if (strcmp(extension, "jpg") == 0) {
+    } else if (extension == "jpg") {
+        cout << "we are in run jpg"<< endl;
         contenuMessage = donnees.getData(imagePath);
         com.init();
         com.connectToServer();
         // Envoi de l'extension
-        com.sendExtension(const_cast<char *>(extension));
+        com.sendExtension(cstr);
         // Envoie de du fichier au format binaire
         com.sendMessage(contenuMessage);
         // Fermeture de la connexion
         com.closeConnection();
-
         try {
-            gestion::run("../cmake-build-debug/output.json");
+            gestion::run(jsonPath);
         } catch (const std::exception &e) {
             std::cerr << "error at run() JSON: " << e.what() << std::endl;
         }
-    } else if (strcmp(extension, "cpp") == 0) {
+    } else if (extension == "exe") {
+        cout << "we are in run jpg"<< endl;
         contenuMessage = donnees.getData(filePath);
         com.init();
         com.connectToServer();
         // Envoi de l'extension
-        com.sendExtension(const_cast<char *>(extension));
+        com.sendExtension(cstr);
         // Envoie de du fichier au format binaire
         com.sendMessage(contenuMessage);
         // Fermeture de la connexion
         com.closeConnection();
-
         try {
-            gestion::run("../cmake-build-debug/output.json");
+            gestion::run(jsonPath);
         } catch (const std::exception &e) {
             std::cerr << "error at run() JSON: " << e.what() << std::endl;
         }
     } else {
-        std::cout << "Erreur: extension non reconnue" << std::endl;
+        std::cout << "Erreur: extension non reconnue , extension :" << extension << std::endl;
     }
 }

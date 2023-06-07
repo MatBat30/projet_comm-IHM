@@ -107,21 +107,27 @@ void donnee::writeData(int numberOfScreens) {
     std::cout << "JSON output saved to output.json" << std::endl;
 }
 
-std::string donnee::getFileExtension(const std::string &filePath) {
+std::string donnee::getFileExtension(const std::string &filePath_) {
     // Trouver la position du dernier point dans le chemin du fichier
+    string filePath = filePath_;
     size_t dotPos = filePath.find_last_of(".");
     cout << "file path at getFileExtension() state : " << filePath << endl;
     if (dotPos != std::string::npos) {
         // Extraire l'extension à partir de la position du dernier point
         std::string extension = filePath.substr(dotPos + 1);
-        cout << "enxtension " << extension << endl;
-
+        cout << "enxtension : " << extension << endl;
         if (extension == "json") {
-            return extension = "jsn";
+            extension = "jsn";
+            cout << "extension : " << extension << endl;
+            return extension;
         } else if (extension == "jpg") {
-            return extension = "jpg";
+            extension = "jpg";
+            cout << "extension : " << extension << endl;
+            return extension;
         } else if (extension == "cpp") {
-            return extension = "exe";
+            extension = "exe";
+            cout << "extension : " << extension << endl;
+            return extension;
         } else {
             std::cout << "L'extension n'est pas reconnue" << std::endl;
         }

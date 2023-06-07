@@ -16,7 +16,6 @@ private:
 
     string filePath;
     string imagePath;
-    const char *extension;
     int numberScreen;
 
 public:
@@ -34,3 +33,4 @@ public:
 };
 
 #endif //PROJET_COMM_GESTION_H
+

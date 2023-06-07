@@ -16,11 +16,9 @@ int comm::init() {
         WSACleanup();
         return 1;
     }
-
     // mise en place de l address server et du port
-
     serverAddress.sin_family = AF_INET;
-    serverAddress.sin_port = htons(6565);
+    serverAddress.sin_port = htons(8080);
     serverAddress.sin_addr.s_addr = inet_addr("172.16.8.111");
     return 0;
 }
