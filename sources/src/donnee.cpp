@@ -56,19 +56,37 @@ void donnee::writeData(int numberOfScreens) {
 
         json animation;
 
-        if (animationSet.at(j).rotationSpeed != "NULL") {
-            animation["rotation"]["speed"] = animationSet.at(j).rotationSpeed;
-            animation["rotation"]["direction"] = animationSet.at(j).rotationDirection;
-            animation["rotation"]["rotation axis"] = animationSet.at(j).rotationAxis;
+        if ((animationSet.at(j).translationSpeed != "NULL") && (animationSet.at(j).rotationSpeed != "NULL")) {
+            cout << "Error: animation " << i << " parametre en conflit pour l'image : "<< j<< "la rotation et la translation on vont etre appliquer , cela peut entrainer une erreur a l'affichage " << endl;
+        }
+        else {
+        if ((animationSet.at(j).translationSpeed != "NULL") || (animationSet.at(j).rotationSpeed != "NULL")) {
+            if (animationSet.at(j).rotationSpeed != "NULL") {
+                animation["rotation"]["speed"] = animationSet.at(j).rotationSpeed;
+                animation["rotation"]["direction"] = animationSet.at(j).rotationDirection;
+                animation["rotation"]["rotation axis"] = animationSet.at(j).rotationAxis;
+            }
+
+            if (animationSet.at(j).translationSpeed != "NULL") {
+                animation["translation"]["speed"] = animationSet.at(j).translationSpeed;
+                animation["translation"]["direction"] = animationSet.at(j).translationDirection;
+
+            }
+        } else {
+            animation["type"] = "NULL";
+        }
         }
 
-        if (animationSet.at(j).translationSpeed != "NULL") {
-            animation["translation"]["speed"] = animationSet.at(j).translationSpeed;
-            animation["translation"]["direction"] = animationSet.at(j).translationDirection;
 
-        }
 
         image["animation"] = animation;
+        if (animationSet.at(j).rotationSpeed != "NULL") {
+            image["animation"]["type"] = "rotation";
+        }
+        if (animationSet.at(j).translationSpeed != "NULL") {
+            image["animation"]["type"] = "translation";
+        }
+
 
         setting["image " + std::to_string(i)] = image;
 

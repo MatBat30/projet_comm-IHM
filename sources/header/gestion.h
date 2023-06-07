@@ -13,7 +13,7 @@ private:
     vector<parametresImage> image;
     vector<parametresAnimation> animation;
     parametresDictionaire dictionnaire;
-
+    bool execution;
     string filePath;
     string imagePath;
     int numberScreen;

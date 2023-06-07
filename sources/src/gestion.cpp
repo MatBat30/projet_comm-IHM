@@ -10,6 +10,7 @@ gestion::gestion(vector<parametresImage> image_, vector<parametresAnimation> ani
     filePath = filePath_;
     imagePath = imagePath_;
     numberScreen = numberScreen_;
+    execution = false;
 
 #ifdef test
     cout << "filePath at gestion() state : " << filePath << endl;
@@ -69,7 +70,7 @@ void gestion::run(string filePath_) {
     cout << "filePath at run() state : " << filePath << endl;
 #endif
     if (extension == "jsn") {
-        cout << "we are in run jpg"<< endl;
+        cout << "we are in run JSON"<< endl;
         contenuMessage = donnees.getJsonData();
         com.init();
         com.connectToServer();
@@ -90,13 +91,16 @@ void gestion::run(string filePath_) {
         com.sendMessage(contenuMessage);
         // Fermeture de la connexion
         com.closeConnection();
-        try {
-            gestion::run(jsonPath);
-        } catch (const std::exception &e) {
-            std::cerr << "error at run() JSON: " << e.what() << std::endl;
+        if (execution == false) {
+            execution = true;
+            try {
+                gestion::run(jsonPath);
+            } catch (const std::exception &e) {
+                std::cerr << "error at run() JSON: " << e.what() << std::endl;
+            }
         }
     } else if (extension == "exe") {
-        cout << "we are in run jpg"<< endl;
+        cout << "we are in run exe"<< endl;
         contenuMessage = donnees.getData(filePath);
         com.init();
         com.connectToServer();
@@ -106,11 +110,15 @@ void gestion::run(string filePath_) {
         com.sendMessage(contenuMessage);
         // Fermeture de la connexion
         com.closeConnection();
-        try {
-            gestion::run(jsonPath);
-        } catch (const std::exception &e) {
-            std::cerr << "error at run() JSON: " << e.what() << std::endl;
+        if (execution == false) {
+            execution = true;
+            try {
+                gestion::run(jsonPath);
+            } catch (const std::exception &e) {
+                std::cerr << "error at run() JSON: " << e.what() << std::endl;
+            }
         }
+
     } else {
         std::cout << "Erreur: extension non reconnue , extension :" << extension << std::endl;
     }
