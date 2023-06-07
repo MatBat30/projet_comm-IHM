@@ -40,7 +40,7 @@ int main() {
 //     dictionnaire.push_back(dico);
 
     monImage = "../other/Toto.jpg";
-    monFichier = "../other/rotation.cpp";
+    monFichier = "../other/rotationfinale1.exe";
 
     gestion g(image, animation, dictionnaire, monImage, monFichier, numberScreen);
 

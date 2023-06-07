@@ -124,7 +124,7 @@ std::string donnee::getFileExtension(const std::string &filePath_) {
             extension = "jpg";
             cout << "extension : " << extension << endl;
             return extension;
-        } else if (extension == "cpp") {
+        } else if (extension == "exe") {
             extension = "exe";
             cout << "extension : " << extension << endl;
             return extension;
@@ -138,7 +138,7 @@ std::string donnee::getFileExtension(const std::string &filePath_) {
 vector<char> donnee::getJsonData() {
     vector<char> contenuJson = getData("output.json");
     std::string str(contenuJson.begin(), contenuJson.end());
-    cout << "contenuJson: " << endl;
-    cout << str << endl;
+   // cout << "contenuJson: " << endl;
+   // cout << str << endl;
     return contenuJson;
 }

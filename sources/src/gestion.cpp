@@ -11,7 +11,6 @@ gestion::gestion(vector<parametresImage> image_, vector<parametresAnimation> ani
     imagePath = imagePath_;
     numberScreen = numberScreen_;
 
-
 #ifdef test
     cout << "filePath at gestion() state : " << filePath << endl;
     cout << "imagePath at gestion() state : " << imagePath << endl;
