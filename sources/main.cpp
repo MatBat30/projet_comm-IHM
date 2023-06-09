@@ -5,7 +5,6 @@
 
 int main() {
     // Variables pour stocker les noms de fichiers et leur contenu
-
     std::string monImage;
     std::string monFichier;
     int numberScreen = 0;
@@ -13,37 +12,42 @@ int main() {
     std::vector<parametresAnimation> animation = {};
 //    std::vector<parametresDictionaire> dictionnaire = {};
 
-    //create 2 structure de données a copié dans la classe gestion
-    parametresImage image1 = {0, 0, 1050, 420, "2023-06-02 15:27", "2023-06-02 15:32"};
-    parametresAnimation animation1 = {"NULL", "NULL", "NULL", "slow", "up"};
+    //crée 2 structure de données a copié dans la classe gestion
+    parametresImage image1 = {473, 165, 201, 221, "2023-06-02 15:27", "2023-06-02 15:32"};
+    parametresAnimation animation1 = {"NULL", "NULL", "NULL", "NULL", "NULL"};
     image.push_back(image1);
     animation.push_back(animation1);
 
-    parametresImage image2 = {420, 0, 1050, 420, "2023-06-02 15:27", "2023-06-02 15:32"};
-    parametresAnimation animation2 = {"fast", "clockwise", "center", "NULL", "NULL"};
+    parametresImage image2 = {698, 165, 201, 221, "2023-06-02 15:27", "2023-06-02 15:32"};
+    parametresAnimation animation2 = {"NULL", "NULL", "NULL", "NULL", "NULL"};
     image.push_back(image2);
     animation.push_back(animation2);
 
-    parametresImage image3 = {840, 0, 1050, 420, "2023-06-02 15:27", "2023-06-02 15:32"};
-    parametresAnimation animation3 = {"medium", "counter-clockwise", "bottom left", "slow", "right"};
+    parametresImage image3 = {475, 371, 201, 221, "2023-06-02 15:27", "2023-06-02 15:32"};
+    parametresAnimation animation3 = {"NULL", "NULL", "NULL", "NULL", "NULL"};
     image.push_back(image3);
     animation.push_back(animation3);
 
-    parametresImage image4 = {1260, 0, 1050, 420, "2023-06-02 15:27", "2023-06-02 15:32"};
-    parametresAnimation animation4 = {"NULL", "NULL", "NULL", "fast", "left"};
+    parametresImage image4 = {700, 371, 201, 221, "2023-06-02 15:27", "2023-06-02 15:32"};
+    parametresAnimation animation4 = {"NULL", "NULL", "NULL", "NULL", "NULL"};
     image.push_back(image4);
     animation.push_back(animation4);
-    numberScreen = image.size();
-    //kwnow the size of the vector image
 
+    parametresImage image5 = {923, 371, 201, 221, "2023-06-02 15:27", "2023-06-02 15:32"};
+    parametresAnimation animation5 = {"NULL", "NULL", "NULL", "NULL", "NULL"};
+    image.push_back(image5);
+    animation.push_back(animation5);
+
+    numberScreen = image.size();
     cout << "numberScreen: " << numberScreen << endl;
     vector<string> param = {"int", "string", "float", "double", "char", "char *"};
 
-    parametresDictionaire dictionnaire = {"rotationfinal1", "rotationfinal1", "", static_cast<int>(size(param)), param};
-//     dictionnaire.push_back(dico);
+    parametresDictionaire dictionnaire = {"./rotation", "rotation", "", static_cast<int>(size(param)), param};
 
-    monImage = "../other/Toto.jpg";
-    monFichier = "../other/rotationfinale1.exe";
+    monImage = "../other/jk.jpg";
+    monFichier = "../other/rotation.exe";/*rename forcee avec le .exe car le fichier n'as pas d'extension par defaut,
+ *                                      pour l'identifiée plus facilement on force l'extension .exe qui sera enlevée
+ *                                      a la reception cotée intermediaire   */
 
     gestion g(image, animation, dictionnaire, monImage, monFichier, numberScreen);
 
